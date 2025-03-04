@@ -33,11 +33,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Also submit when pressing Enter key in the input field
-    emailInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            submitEmail();
-        }
-    });
+    if (emailInput) {
+        emailInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                submitEmail();
+                return false;
+            }
+        });
+    }
     
     function submitEmail() {
         const email = emailInput.value.trim();
@@ -79,33 +83,33 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Auto-resize textarea as user types
-    if (emailInput && emailInput.tagName === 'TEXTAREA') {
-        // Function to adjust height based on content
-        function adjustHeight() {
-            // Reset height temporarily
-            emailInput.style.height = 'auto';
-            
-            // Calculate the height based on scrollHeight
-            const newHeight = emailInput.scrollHeight;
-            
-            // Apply the new height
-            emailInput.style.height = newHeight + 'px';
-            
-            console.log('New height:', newHeight);
-        }
-        
-        // Set initial height
-        emailInput.style.height = '52px';
-        
-        // Add event listener for input
-        emailInput.addEventListener('input', adjustHeight);
-        
-        // Also adjust on window resize
-        window.addEventListener('resize', adjustHeight);
-        
-        // Initial adjustment
-        setTimeout(adjustHeight, 100);
-    }
+    // if (emailInput && emailInput.tagName === 'TEXTAREA') {
+    //     // Function to adjust height based on content
+    //     function adjustHeight() {
+    //         // Reset height temporarily
+    //         emailInput.style.height = 'auto';
+    //         
+    //         // Calculate the height based on scrollHeight
+    //         const newHeight = emailInput.scrollHeight;
+    //         
+    //         // Apply the new height
+    //         emailInput.style.height = newHeight + 'px';
+    //         
+    //         console.log('New height:', newHeight);
+    //     }
+    //     
+    //     // Set initial height
+    //     emailInput.style.height = '52px';
+    //     
+    //     // Add event listener for input
+    //     emailInput.addEventListener('input', adjustHeight);
+    //     
+    //     // Also adjust on window resize
+    //     window.addEventListener('resize', adjustHeight);
+    //     
+    //     // Initial adjustment
+    //     setTimeout(adjustHeight, 100);
+    // }
 
     // Add event listener to phone number
     const phoneLink = document.querySelector('.phone');

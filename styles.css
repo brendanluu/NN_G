@@ -199,7 +199,7 @@ header {
     margin-bottom: 10px;
 }
 
-/* Email Input - Single line by default, expands as needed */
+/* Email Input - Update for full width */
 .email-input {
     background-color: transparent;
     border: none;
@@ -207,23 +207,21 @@ header {
     font-size: 48px;
     font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
     width: 100%;
-    max-width: 300px;
+    max-width: 100%; /* Changed from 300px to 100% */
     text-align: center;
     padding: 5px 0;
     margin: 5px 0;
     outline: none;
-    resize: none; /* Prevent manual resizing */
-    overflow: hidden; /* Hide scrollbars */
-    height: 52px; /* Start with single line height */
-    line-height: 1; /* Ensure consistent line height */
+    height: 52px;
+    line-height: 1;
     display: block;
 }
 
 .email-input-container {
     position: relative;
     display: inline-block;
-    width: 80%;
-    max-width: 300px;
+    width: 90%; /* Changed from 80% to 90% */
+    max-width: 100%; /* Changed from 300px to 100% */
 }
 
 .email-input-container::after {
