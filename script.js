@@ -106,4 +106,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initial adjustment
         setTimeout(adjustHeight, 100);
     }
+
+    // Add event listener to phone number
+    const phoneLink = document.querySelector('.phone');
+    if (phoneLink) {
+        phoneLink.addEventListener('click', function(e) {
+            // Prevent default only if needed for debugging
+            // e.preventDefault();
+            window.location.href = this.getAttribute('href');
+        });
+    }
 }); 
