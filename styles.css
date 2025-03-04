@@ -103,8 +103,6 @@ header {
     font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
     font-size: 48px; /* Increased from 24px to 48px */
     font-weight: normal;
-    margin-bottom: 5px;
-    margin-top: 20px; /* Add space after the green section */
 }
 
 .in {
