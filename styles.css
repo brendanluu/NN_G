@@ -44,15 +44,14 @@ header {
     font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
     font-size: 190px; /* Increased from 80px to 190px */
     font-weight: normal;
-    line-height: 1;
-    margin-bottom: 5px;
+    line-height: .9;
 }
 
 .nostalgia {
     font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
     font-size: 48px; /* Increased from 24px to 48px */
     font-weight: normal;
-    line-height: 1.2;
+    line-height: .9;
 }
 
 /* Text Section */
@@ -83,7 +82,7 @@ header {
     font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
     font-size: 190px; /* Increased from 80px to 190px */
     font-weight: normal;
-    line-height: 1;
+    line-height: .7;
     color: white; /* White text */
     padding: 5px 0;
     position: relative;
@@ -110,7 +109,7 @@ header {
 
 .in {
     font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
-    font-size: 80px;
+    font-size: 400px; /* Changed from 80px to 400px */
     font-weight: normal;
     line-height: 1;
 }
@@ -257,7 +256,7 @@ header {
 
 .enter {
     font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
-    font-size: 80px;
+    font-size: 145px; /* Changed from 80px to 145px */
     font-weight: normal;
     line-height: 1;
     margin-top: 10px;
