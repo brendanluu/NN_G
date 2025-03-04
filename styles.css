@@ -70,10 +70,11 @@ header {
     content: "";
     display: block;
     background-color: #5DCB5D;
-    width: 100%;
-    height: 300px; /* Increased from 150px to 300px to fit larger text */
+    width: 100vw; /* Change to viewport width */
+    height: 300px;
     position: absolute;
-    left: 0;
+    left: 50%; /* Center it */
+    transform: translateX(-50%); /* Center it properly */
     top: 0;
     z-index: 0;
 }
@@ -118,6 +119,7 @@ header {
 .releases-section {
     background-color: white;
     padding: 10px 0 30px;
+    width: 100%;
 }
 
 .releases-header {
@@ -125,25 +127,31 @@ header {
     color: white;
     text-align: center;
     padding: 10px 0;
-    font-family: Helvetica, Arial, sans-serif; /* Changed to regular Helvetica */
+    font-family: Helvetica, Arial, sans-serif;
     font-weight: bold;
-    font-size: 48px; /* Increased from 20px to 48px */
+    font-size: 48px;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .releases-list {
     padding: 20px 30px;
-    font-family: Helvetica, Arial, sans-serif; /* Changed to regular Helvetica */
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 .release {
     display: flex;
-    margin-bottom: 20px;
-    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 40px;
+    align-items: center;
+    text-align: center;
 }
 
 .number {
-    font-size: 48px; /* Increased from 18px to 48px */
-    margin-right: 10px;
+    font-size: 48px;
+    margin-bottom: 5px;
     font-weight: bold;
     font-family: Helvetica, Arial, sans-serif;
 }
@@ -151,7 +159,7 @@ header {
 .release-link {
     text-decoration: underline;
     font-weight: bold;
-    font-size: 48px; /* Increased from 18px to 48px */
+    font-size: 48px;
     line-height: 1.2;
     font-family: Helvetica, Arial, sans-serif;
 }
@@ -170,37 +178,99 @@ header {
 
 /* Email Section */
 .email-section {
-    background-color: #5DCB5D; /* Bright green */
+    background-color: #5DCB5D;
     color: white;
     text-align: center;
-    padding: 10px 0;
+    padding: 15px 0;
     position: relative;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .email-text {
     font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
-    font-size: 20px;
+    font-size: 48px;
     font-weight: normal;
     margin-bottom: 10px;
 }
 
-.enter {
+/* Email Input - Single line by default, expands as needed */
+.email-input {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 48px;
     font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
-    font-size: 50px;
-    font-weight: normal;
-    line-height: 1;
-    margin-top: 10px;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    padding: 5px 0;
+    margin: 5px 0;
+    outline: none;
+    resize: none; /* Prevent manual resizing */
+    overflow: hidden; /* Hide scrollbars */
+    height: 52px; /* Start with single line height */
+    line-height: 1; /* Ensure consistent line height */
+    display: block;
 }
 
-.email-section::before {
-    content: "";
+.email-input-container {
+    position: relative;
+    display: inline-block;
+    width: 80%;
+    max-width: 300px;
+}
+
+.email-input-container::after {
+    content: '';
+    width: 1px;
+    height: 52px;
+    background-color: white;
     position: absolute;
     top: 50%;
     left: 50%;
-    height: 40px;
-    width: 1px;
-    background-color: white;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
+    animation: blink 1s step-end infinite;
+    pointer-events: none;
+}
+
+/* Hide cursor when input is focused */
+.email-input:focus ~ .email-input-container::after,
+.email-input-container:has(.email-input:focus)::after,
+.input-focused::after {
+    display: none;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.email-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.enter {
+    font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
+    font-size: 80px;
+    font-weight: normal;
+    line-height: 1;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.interactive-section {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: none; /* Hidden by default, will be shown after email click */
 }
 
 /* Footer */
@@ -226,4 +296,126 @@ footer {
 .copyright {
     font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
     font-size: 14px;
+}
+
+/* Update the enter text size to 145px */
+.enter-text {
+  font-size: 145px; /* or width: 145px; depending on what you need */
+}
+
+/* Make sure the email input field is properly styled for interaction */
+.email-field {
+  border: 1px solid #ccc;
+  padding: 8px;
+  width: 100%;
+  outline: none; /* Removes the default outline and uses our custom styling */
+}
+
+.email-field:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+.email-container {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.email-container label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.email-container input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.email-container button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.email-container button:hover {
+  background-color: #0056b3;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow-wrap: break-word; /* Add this to enable text wrapping */
+  word-wrap: break-word; /* For older browsers */
+}
+
+.input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #00ff00;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  outline: none;
+  padding: 10px;
+  width: 100%;
+  white-space: pre-wrap; /* Add this to allow text wrapping */
+  overflow-wrap: break-word; /* Add this to enable text wrapping */
+  word-wrap: break-word; /* For older browsers */
+}
+
+.input-container::after {
+  content: '|';
+  color: #00ff00;
+  animation: blink 1s step-end infinite;
+  position: absolute;
+  left: 10px;
+  pointer-events: none;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.input:focus + .input-container::after,
+.input-container:has(.input:focus)::after {
+  display: none;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow-wrap: break-word; /* Add this to enable text wrapping */
+  word-wrap: break-word; /* For older browsers */
+}
+
+.input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #00ff00;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  outline: none;
+  padding: 10px;
+  width: 100%;
+  white-space: pre-wrap; /* Add this to allow text wrapping */
+  overflow-wrap: break-word; /* Add this to enable text wrapping */
+  word-wrap: break-word; /* For older browsers */
 } 
