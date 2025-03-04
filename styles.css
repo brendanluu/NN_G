@@ -1,0 +1,229 @@
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('fonts/mycustomfont.woff2') format('woff2'),
+         url('fonts/mycustomfont.woff') format('woff'),
+         url('fonts/mycustomfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNeueLT-HeavyCond';
+    src: url('fonts/HelveticaNeueLT-HeavyCond.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'HelveticaNeueLT-HeavyCond', Arial, Helvetica, sans-serif;
+}
+
+body {
+    width: 100%;
+    max-width: 393px;
+    margin: 0 auto;
+}
+
+.container {
+    width: 100%;
+    position: relative;
+}
+
+/* Header Section */
+header {
+    background-color: white; /* Changed from green to white */
+    color: #5DCB5D; /* Changed text color to green */
+    padding: 20px 0;
+    text-align: center;
+}
+
+.new {
+    font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
+    font-size: 190px; /* Increased from 80px to 190px */
+    font-weight: normal;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.nostalgia {
+    font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
+    font-size: 48px; /* Increased from 24px to 48px */
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+/* Text Section */
+.text-section {
+    background-color: white; /* White background for overall section */
+    color: #5DCB5D; /* Green text */
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 2px;
+    position: relative; /* Add this to establish a positioning context */
+}
+
+/* Create a green background container for TEXT and phone number */
+.text-section::before {
+    content: "";
+    display: block;
+    background-color: #5DCB5D;
+    width: 100%;
+    height: 300px; /* Increased from 150px to 300px to fit larger text */
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+}
+
+.text {
+    font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
+    font-size: 190px; /* Increased from 80px to 190px */
+    font-weight: normal;
+    line-height: 1;
+    color: white; /* White text */
+    padding: 5px 0;
+    position: relative;
+    z-index: 1; /* Make sure text is above the background */
+}
+
+.phone {
+    font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
+    font-size: 48px; /* Increased from 24px to 48px */
+    margin: 5px 0 10px;
+    color: white; /* White text */
+    padding: 5px 0;
+    position: relative;
+    z-index: 1; /* Make sure text is above the background */
+}
+
+.opt {
+    font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
+    font-size: 48px; /* Increased from 24px to 48px */
+    font-weight: normal;
+    margin-bottom: 5px;
+    margin-top: 20px; /* Add space after the green section */
+}
+
+.in {
+    font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
+    font-size: 80px;
+    font-weight: normal;
+    line-height: 1;
+}
+
+/* Releases Section */
+.releases-section {
+    background-color: white;
+    padding: 10px 0 30px;
+}
+
+.releases-header {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-family: Helvetica, Arial, sans-serif; /* Changed to regular Helvetica */
+    font-weight: bold;
+    font-size: 48px; /* Increased from 20px to 48px */
+}
+
+.releases-list {
+    padding: 20px 30px;
+    font-family: Helvetica, Arial, sans-serif; /* Changed to regular Helvetica */
+}
+
+.release {
+    display: flex;
+    margin-bottom: 20px;
+    align-items: flex-start;
+}
+
+.number {
+    font-size: 48px; /* Increased from 18px to 48px */
+    margin-right: 10px;
+    font-weight: bold;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.release-link {
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 48px; /* Increased from 18px to 48px */
+    line-height: 1.2;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.red {
+    color: #D93025;
+}
+
+.blue {
+    color: #4285F4;
+}
+
+.yellow {
+    color: #FBBC05;
+}
+
+/* Email Section */
+.email-section {
+    background-color: #5DCB5D; /* Bright green */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+}
+
+.email-text {
+    font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.enter {
+    font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
+    font-size: 50px;
+    font-weight: normal;
+    line-height: 1;
+    margin-top: 10px;
+}
+
+.email-section::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 40px;
+    width: 1px;
+    background-color: white;
+    transform: translateX(-50%);
+}
+
+/* Footer */
+footer {
+    background-color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-links {
+    margin-bottom: 5px;
+}
+
+.footer-links a {
+    font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0 10px;
+}
+
+.copyright {
+    font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
+    font-size: 14px;
+} 
