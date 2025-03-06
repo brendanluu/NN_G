@@ -162,6 +162,10 @@ header {
     font-size: 48px;
     line-height: 1.2;
     font-family: Helvetica, Arial, sans-serif;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    display: inline-block;
 }
 
 .red {
