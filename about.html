@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - New Nostalgia Group</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="header-link">
+                <div class="new">NEW</div>
+                <div class="nostalgia">NOSTALGIA<br>GROUP</div>
+            </a>
+        </header>
+        
+        <div class="animation-container">
+            <div class="outer-circle">
+                <div class="inner-circle">
+                    <div class="circle-text">
+                        FAKE<br>TECH<br>COMPANY
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="footer-links">
+                <a href="index.html">HOME</a>
+                <a href="#contact">CONTACT</a>
+                <a href="#privacy">PRIVACY POLICY</a>
+            </div>
+            <div class="copyright">
+                <img src="assets/NN-G_logo.svg" alt="NN-G Logo" class="nn-logo">
+                2025
+            </div>
+        </footer>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const outerCircle = document.querySelector('.outer-circle');
+        const innerCircle = document.querySelector('.inner-circle');
+        
+        if (!outerCircle || !innerCircle) return;
+        
+        // Remove the CSS animation
+        innerCircle.style.animation = 'none';
+        
+        // Initial position and velocity
+        let x = outerCircle.offsetWidth * 0.3;
+        let y = outerCircle.offsetHeight * 0.3;
+        let vx = 3;
+        let vy = 2;
+        
+        // Get dimensions
+        function updateDimensions() {
+            outerWidth = outerCircle.offsetWidth;
+            outerHeight = outerCircle.offsetHeight;
+            innerWidth = innerCircle.offsetWidth;
+            innerHeight = innerCircle.offsetHeight;
+            
+            // Max positions to keep inner circle inside outer circle
+            maxX = outerWidth - innerWidth;
+            maxY = outerHeight - innerHeight;
+        }
+        
+        let outerWidth, outerHeight, innerWidth, innerHeight, maxX, maxY;
+        updateDimensions();
+        
+        // Update on window resize
+        window.addEventListener('resize', updateDimensions);
+        
+        // Animation function
+        function animate() {
+            // Update position
+            x += vx;
+            y += vy;
+            
+            // Bounce off edges
+            if (x <= 0 || x >= maxX) {
+                vx = -vx;
+                x = x <= 0 ? 0 : maxX;
+            }
+            
+            if (y <= 0 || y >= maxY) {
+                vy = -vy;
+                y = y <= 0 ? 0 : maxY;
+            }
+            
+            // Apply position
+            innerCircle.style.left = x + 'px';
+            innerCircle.style.top = y + 'px';
+            
+            // Continue animation
+            requestAnimationFrame(animate);
+        }
+        
+        // Start animation
+        animate();
+    });
+    </script>
+</body>
+</html> 

@@ -431,3 +431,105 @@ footer {
   overflow-wrap: break-word; /* Add this to enable text wrapping */
   word-wrap: break-word; /* For older browsers */
 }
+
+/* About Section */
+.about-section {
+    background-color: white;
+    padding: 30px 20px 60px;
+    width: 100%;
+}
+
+.about-header {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
+    font-weight: normal;
+    font-size: 48px;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 30px;
+}
+
+.about-content {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    line-height: 1.4;
+    margin-bottom: 40px;
+}
+
+.about-content p {
+    margin-bottom: 20px;
+}
+
+.back-link {
+    text-align: center;
+}
+
+.back-link a {
+    font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
+    font-size: 32px;
+    color: black;
+    text-decoration: none;
+}
+
+/* Make header clickable */
+.header-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.header-link:hover {
+    opacity: 0.9; /* Subtle hover effect */
+}
+
+/* Updated animation for About page */
+.animation-container {
+    width: 100vw;
+    padding: 40px 0 80px;
+    background-color: #5DCB5D; /* Green background like in the image */
+    position: relative;
+    overflow: hidden;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Updated for JavaScript animation */
+.outer-circle {
+    width: 90vw;
+    height: 90vw;
+    max-width: 800px;
+    max-height: 800px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.inner-circle {
+    width: 15vw;
+    height: 15vw;
+    max-width: 120px;
+    max-height: 120px;
+    background-color: #5DCB5D;
+    border-radius: 50%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Remove the CSS animation - will be handled by JavaScript */
+    animation: none;
+}
+
+.circle-text {
+    color: white;
+    font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
+    font-size: min(4vw, 24px);
+    text-align: center;
+    line-height: 1.2;
+}
