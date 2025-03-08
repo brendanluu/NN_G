@@ -46,9 +46,6 @@
         
         if (!outerCircle || !innerCircle) return;
         
-        // Remove the CSS animation
-        innerCircle.style.animation = 'none';
-        
         // Text options to cycle through
         const textOptions = [
             "FAKE<br>TECH<br>CO.",
@@ -59,32 +56,46 @@
         
         let currentTextIndex = 0;
         
-        // Initial position and velocity (slower)
-        let x = outerCircle.offsetWidth * 0.3;
-        let y = outerCircle.offsetHeight * 0.3;
-        let vx = 1.5; // Reduced from 3
-        let vy = 1; // Reduced from 2
+        // Set initial text
+        circleText.innerHTML = textOptions[0];
         
-        // Get dimensions
+        // Animation variables
+        let x, y;           // Position
+        let vx = 2;         // X velocity - fixed value
+        let vy = 1.5;       // Y velocity - fixed value
+        let maxX, maxY;     // Boundaries
+        
+        // Initialize position to center
+        function initPosition() {
+            const outerWidth = outerCircle.offsetWidth;
+            const outerHeight = outerCircle.offsetHeight;
+            const innerWidth = innerCircle.offsetWidth;
+            const innerHeight = innerCircle.offsetHeight;
+            
+            // Start in the middle
+            x = (outerWidth - innerWidth) / 2;
+            y = (outerHeight - innerHeight) / 2;
+            
+            // Set initial position
+            innerCircle.style.left = x + 'px';
+            innerCircle.style.top = y + 'px';
+        }
+        
+        // Update dimensions without changing velocity
         function updateDimensions() {
-            outerWidth = outerCircle.offsetWidth;
-            outerHeight = outerCircle.offsetHeight;
-            innerWidth = innerCircle.offsetWidth;
-            innerHeight = innerCircle.offsetHeight;
+            const outerWidth = outerCircle.offsetWidth;
+            const outerHeight = outerCircle.offsetHeight;
+            const innerWidth = innerCircle.offsetWidth;
+            const innerHeight = innerCircle.offsetHeight;
             
             // Max positions to keep inner circle inside outer circle
             maxX = outerWidth - innerWidth;
             maxY = outerHeight - innerHeight;
             
-            // Update velocity based on new dimensions
-            updateVelocity();
+            // Ensure position is within bounds after resize
+            x = Math.min(Math.max(0, x), maxX);
+            y = Math.min(Math.max(0, y), maxY);
         }
-        
-        let outerWidth, outerHeight, innerWidth, innerHeight, maxX, maxY;
-        updateDimensions();
-        
-        // Update on window resize
-        window.addEventListener('resize', updateDimensions);
         
         // Change text when bouncing
         function changeText() {
@@ -102,13 +113,13 @@
             if (x <= 0 || x >= maxX) {
                 vx = -vx;
                 x = x <= 0 ? 0 : maxX;
-                changeText(); // Change text on horizontal bounce
+                changeText();
             }
             
             if (y <= 0 || y >= maxY) {
                 vy = -vy;
                 y = y <= 0 ? 0 : maxY;
-                changeText(); // Change text on vertical bounce
+                changeText();
             }
             
             // Apply position
@@ -119,26 +130,15 @@
             requestAnimationFrame(animate);
         }
         
+        // Initialize
+        initPosition();
+        updateDimensions();
+        
+        // Update dimensions on resize without changing velocity
+        window.addEventListener('resize', updateDimensions);
+        
         // Start animation
         animate();
-
-        // Set initial text from the array
-        circleText.innerHTML = textOptions[0];
-
-        // Adjust velocity based on screen size
-        function updateVelocity() {
-            // Base velocity for a 500px wide container
-            const baseWidth = 500;
-            const baseVx = 1.5;
-            const baseVy = 1;
-            
-            // Scale velocity based on outer circle width
-            const scale = outerWidth / baseWidth;
-            vx = baseVx * scale;
-            vy = baseVy * scale;
-            
-            console.log(`Screen width: ${outerWidth}px, Velocity: ${vx}, ${vy}`);
-        }
     });
     </script>
 </body>
