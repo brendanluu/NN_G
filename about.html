@@ -19,7 +19,7 @@
             <div class="outer-circle">
                 <div class="inner-circle">
                     <div class="circle-text">
-                        FAKE<br>TECH<br>COMPANY
+                        <!-- Initial text will be set by JavaScript -->
                     </div>
                 </div>
             </div>
@@ -42,17 +42,28 @@
     document.addEventListener('DOMContentLoaded', function() {
         const outerCircle = document.querySelector('.outer-circle');
         const innerCircle = document.querySelector('.inner-circle');
+        const circleText = document.querySelector('.circle-text');
         
         if (!outerCircle || !innerCircle) return;
         
         // Remove the CSS animation
         innerCircle.style.animation = 'none';
         
-        // Initial position and velocity
+        // Text options to cycle through
+        const textOptions = [
+            "FAKE<br>TECH<br>CO.",
+            "DJ<br>GROUP",
+            "EXP.<br>DESIGN",
+            "SHAMAN"
+        ];
+        
+        let currentTextIndex = 0;
+        
+        // Initial position and velocity (slower)
         let x = outerCircle.offsetWidth * 0.3;
         let y = outerCircle.offsetHeight * 0.3;
-        let vx = 3;
-        let vy = 2;
+        let vx = 1.5; // Reduced from 3
+        let vy = 1; // Reduced from 2
         
         // Get dimensions
         function updateDimensions() {
@@ -64,6 +75,9 @@
             // Max positions to keep inner circle inside outer circle
             maxX = outerWidth - innerWidth;
             maxY = outerHeight - innerHeight;
+            
+            // Update velocity based on new dimensions
+            updateVelocity();
         }
         
         let outerWidth, outerHeight, innerWidth, innerHeight, maxX, maxY;
@@ -72,21 +86,29 @@
         // Update on window resize
         window.addEventListener('resize', updateDimensions);
         
+        // Change text when bouncing
+        function changeText() {
+            currentTextIndex = (currentTextIndex + 1) % textOptions.length;
+            circleText.innerHTML = textOptions[currentTextIndex];
+        }
+        
         // Animation function
         function animate() {
             // Update position
             x += vx;
             y += vy;
             
-            // Bounce off edges
+            // Bounce off edges and change text
             if (x <= 0 || x >= maxX) {
                 vx = -vx;
                 x = x <= 0 ? 0 : maxX;
+                changeText(); // Change text on horizontal bounce
             }
             
             if (y <= 0 || y >= maxY) {
                 vy = -vy;
                 y = y <= 0 ? 0 : maxY;
+                changeText(); // Change text on vertical bounce
             }
             
             // Apply position
@@ -99,6 +121,24 @@
         
         // Start animation
         animate();
+
+        // Set initial text from the array
+        circleText.innerHTML = textOptions[0];
+
+        // Adjust velocity based on screen size
+        function updateVelocity() {
+            // Base velocity for a 500px wide container
+            const baseWidth = 500;
+            const baseVx = 1.5;
+            const baseVy = 1;
+            
+            // Scale velocity based on outer circle width
+            const scale = outerWidth / baseWidth;
+            vx = baseVx * scale;
+            vy = baseVy * scale;
+            
+            console.log(`Screen width: ${outerWidth}px, Velocity: ${vx}, ${vy}`);
+        }
     });
     </script>
 </body>

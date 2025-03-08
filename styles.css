@@ -490,7 +490,7 @@ footer {
 /* Updated animation for About page */
 .animation-container {
     width: 100vw;
-    padding: 40px 0 80px;
+    padding: 40px 0 40px;
     background-color: #5DCB5D; /* Green background like in the image */
     position: relative;
     overflow: hidden;
@@ -512,24 +512,38 @@ footer {
 }
 
 .inner-circle {
-    width: 15vw;
-    height: 15vw;
-    max-width: 120px;
-    max-height: 120px;
+    width: 30vw; /* Increased from 25vw */
+    height: 30vw; /* Increased from 25vw */
+    max-width: 240px; /* Increased from 200px */
+    max-height: 240px; /* Increased from 200px */
     background-color: #5DCB5D;
     border-radius: 50%;
     position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Remove the CSS animation - will be handled by JavaScript */
     animation: none;
 }
 
 .circle-text {
     color: white;
     font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
-    font-size: min(4vw, 24px);
+    font-size: min(6vw, 48px); /* Reduced from 8vw, 64px */
     text-align: center;
     line-height: 1.2;
+    width: 90%; /* Ensure text stays within circle */
+    margin: 0 auto;
+}
+
+/* About page specific styles */
+.about-page header {
+    background-color: white; /* Revert to white background */
+    color: #5DCB5D; /* Revert to green text */
+    position: static;
+    z-index: auto;
+}
+
+/* Remove the full-page green background */
+.about-page-background {
+    display: none;
 }
