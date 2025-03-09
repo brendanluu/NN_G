@@ -59,10 +59,10 @@
         // Set initial text
         circleText.innerHTML = textOptions[0];
         
-        // Animation variables with increased speed
+        // Animation variables
         let x, y;           // Position
-        let vx = 3;         // X velocity - increased from 2 to 3
-        let vy = -2.25;     // Y velocity - increased from -1.5 to -2.25
+        let vx = 3;         // X velocity - positive value (right)
+        let vy = -2.25;     // Y velocity - negative value (up)
         let maxX, maxY;     // Boundaries
         let outerRadius, innerRadius; // Circle radii
         
@@ -161,7 +161,7 @@
             
             // Normalize velocity to maintain consistent speed
             const speed = Math.sqrt(vx * vx + vy * vy);
-            const baseSpeed = Math.sqrt(3*3 + 2.25*2.25); // Updated original speed
+            const baseSpeed = Math.sqrt(3*3 + 2.25*2.25); // Original speed
             vx = (vx / speed) * baseSpeed;
             vy = (vy / speed) * baseSpeed;
             
