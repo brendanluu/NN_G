@@ -74,13 +74,13 @@
         // Set speed based on device
         function setSpeed() {
             if (isMobileDevice()) {
-                // Keep the same speed for mobile
-                vx = 1.5;        // X velocity for mobile
-                vy = -1.125;     // Y velocity for mobile
+                // Slower speed for mobile
+                vx = 1.0;        // X velocity - reduced from 1.5 to 1.0
+                vy = -0.75;      // Y velocity - reduced from -1.125 to -0.75
             } else {
-                // Faster speed for desktop
-                vx = 4;          // X velocity - increased from 3 to 4
-                vy = -3;         // Y velocity - increased from -2.25 to -3
+                // Keep the faster speed for desktop
+                vx = 4;          // X velocity for desktop
+                vy = -3;         // Y velocity for desktop
             }
         }
         
@@ -184,8 +184,8 @@
             const speed = Math.sqrt(vx * vx + vy * vy);
             // Calculate baseSpeed dynamically based on current vx and vy values
             const baseSpeed = isMobileDevice() ? 
-                             Math.sqrt(1.5*1.5 + 1.125*1.125) : 
-                             Math.sqrt(4*4 + 3*3); // Updated for faster desktop speed
+                             Math.sqrt(1.0*1.0 + 0.75*0.75) : // Updated for slower mobile speed
+                             Math.sqrt(4*4 + 3*3);
             vx = (vx / speed) * baseSpeed;
             vy = (vy / speed) * baseSpeed;
             
