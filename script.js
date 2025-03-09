@@ -14,18 +14,18 @@ document.addEventListener('DOMContentLoaded', function() {
         emailInput.focus();
     }
     
-    // Hide cursor when input is focused
-    emailInput.addEventListener('focus', function() {
-        if (emailInputContainer) {
-            emailInputContainer.classList.add('input-focused');
-        }
-    });
-    
-    emailInput.addEventListener('blur', function() {
-        if (emailInputContainer) {
-            emailInputContainer.classList.remove('input-focused');
-        }
-    });
+    // Simplified approach to hide cursor
+    if (emailInput && emailInputContainer) {
+        // Hide cursor when field is clicked
+        emailInput.addEventListener('click', function() {
+            emailInputContainer.classList.add('hide-cursor');
+        });
+        
+        // Also hide on focus (for keyboard navigation)
+        emailInput.addEventListener('focus', function() {
+            emailInputContainer.classList.add('hide-cursor');
+        });
+    }
     
     // Make the ENTER text clickable to submit the email
     enterButton.addEventListener('click', function() {

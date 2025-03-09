@@ -59,11 +59,12 @@
         // Set initial text
         circleText.innerHTML = textOptions[0];
         
-        // Animation variables
+        // Animation variables with increased speed
         let x, y;           // Position
-        let vx = 2;         // X velocity - fixed value
-        let vy = 1.5;       // Y velocity - fixed value
+        let vx = 3;         // X velocity - increased from 2 to 3
+        let vy = -2.25;     // Y velocity - increased from -1.5 to -2.25
         let maxX, maxY;     // Boundaries
+        let outerRadius, innerRadius; // Circle radii
         
         // Initialize position to center
         function initPosition() {
@@ -71,6 +72,10 @@
             const outerHeight = outerCircle.offsetHeight;
             const innerWidth = innerCircle.offsetWidth;
             const innerHeight = innerCircle.offsetHeight;
+            
+            // Calculate radii
+            outerRadius = outerWidth / 2;
+            innerRadius = innerWidth / 2;
             
             // Start in the middle
             x = (outerWidth - innerWidth) / 2;
@@ -88,6 +93,10 @@
             const innerWidth = innerCircle.offsetWidth;
             const innerHeight = innerCircle.offsetHeight;
             
+            // Calculate radii
+            outerRadius = outerWidth / 2;
+            innerRadius = innerWidth / 2;
+            
             // Max positions to keep inner circle inside outer circle
             maxX = outerWidth - innerWidth;
             maxY = outerHeight - innerHeight;
@@ -103,24 +112,87 @@
             circleText.innerHTML = textOptions[currentTextIndex];
         }
         
+        // Check if inner circle is hitting the boundary of outer circle
+        function isColliding() {
+            // Calculate centers
+            const outerCenterX = outerRadius;
+            const outerCenterY = outerRadius;
+            const innerCenterX = x + innerRadius;
+            const innerCenterY = y + innerRadius;
+            
+            // Calculate distance between centers
+            const dx = innerCenterX - outerCenterX;
+            const dy = innerCenterY - outerCenterY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            // If distance between centers is greater than difference of radii, collision occurs
+            return distance + innerRadius > outerRadius;
+        }
+        
+        // Calculate bounce direction with some randomness
+        function bounce() {
+            // Calculate centers
+            const outerCenterX = outerRadius;
+            const outerCenterY = outerRadius;
+            const innerCenterX = x + innerRadius;
+            const innerCenterY = y + innerRadius;
+            
+            // Vector from outer center to inner center
+            const dx = innerCenterX - outerCenterX;
+            const dy = innerCenterY - outerCenterY;
+            
+            // Normalize the vector
+            const length = Math.sqrt(dx * dx + dy * dy);
+            const normalX = dx / length;
+            const normalY = dy / length;
+            
+            // Add some randomness to the normal vector (±30 degrees)
+            const angle = Math.atan2(normalY, normalX);
+            const randomAngle = angle + (Math.random() * 1.0 - 0.5); // ±0.5 radians (about ±30 degrees)
+            const randomNormalX = Math.cos(randomAngle);
+            const randomNormalY = Math.sin(randomAngle);
+            
+            // Calculate dot product of velocity and randomized normal
+            const dot = vx * randomNormalX + vy * randomNormalY;
+            
+            // Calculate reflection vector
+            vx = vx - 2 * dot * randomNormalX;
+            vy = vy - 2 * dot * randomNormalY;
+            
+            // Normalize velocity to maintain consistent speed
+            const speed = Math.sqrt(vx * vx + vy * vy);
+            const baseSpeed = Math.sqrt(3*3 + 2.25*2.25); // Updated original speed
+            vx = (vx / speed) * baseSpeed;
+            vy = (vy / speed) * baseSpeed;
+            
+            // Ensure inner circle stays inside
+            const maxDistance = outerRadius - innerRadius;
+            const newX = outerCenterX + normalX * maxDistance - innerRadius;
+            const newY = outerCenterY + normalY * maxDistance - innerRadius;
+            
+            x = newX;
+            y = newY;
+            
+            // Change text on bounce
+            changeText();
+        }
+        
         // Animation function
         function animate() {
             // Update position
             x += vx;
             y += vy;
             
-            // Bounce off edges and change text
-            if (x <= 0 || x >= maxX) {
-                vx = -vx;
-                x = x <= 0 ? 0 : maxX;
-                changeText();
+            // Check for collision with circular boundary
+            if (isColliding()) {
+                bounce();
             }
             
-            if (y <= 0 || y >= maxY) {
-                vy = -vy;
-                y = y <= 0 ? 0 : maxY;
-                changeText();
-            }
+            // Simple boundary checks for safety
+            if (x < 0) x = 0;
+            if (y < 0) y = 0;
+            if (x > maxX) x = maxX;
+            if (y > maxY) y = maxY;
             
             // Apply position
             innerCircle.style.left = x + 'px';
