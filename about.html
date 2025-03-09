@@ -59,12 +59,33 @@
         // Set initial text
         circleText.innerHTML = textOptions[0];
         
-        // Animation variables
+        // Check if device is mobile
+        function isMobileDevice() {
+            return (window.innerWidth <= 768) || 
+                   /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+        
+        // Animation variables with device-specific speeds
         let x, y;           // Position
-        let vx = 3;         // X velocity - positive value (right)
-        let vy = -2.25;     // Y velocity - negative value (up)
+        let vx, vy;         // Velocity variables
         let maxX, maxY;     // Boundaries
         let outerRadius, innerRadius; // Circle radii
+        
+        // Set speed based on device
+        function setSpeed() {
+            if (isMobileDevice()) {
+                // Keep the same speed for mobile
+                vx = 1.5;        // X velocity for mobile
+                vy = -1.125;     // Y velocity for mobile
+            } else {
+                // Faster speed for desktop
+                vx = 4;          // X velocity - increased from 3 to 4
+                vy = -3;         // Y velocity - increased from -2.25 to -3
+            }
+        }
+        
+        // Initialize speed
+        setSpeed();
         
         // Initialize position to center
         function initPosition() {
@@ -161,7 +182,10 @@
             
             // Normalize velocity to maintain consistent speed
             const speed = Math.sqrt(vx * vx + vy * vy);
-            const baseSpeed = Math.sqrt(3*3 + 2.25*2.25); // Original speed
+            // Calculate baseSpeed dynamically based on current vx and vy values
+            const baseSpeed = isMobileDevice() ? 
+                             Math.sqrt(1.5*1.5 + 1.125*1.125) : 
+                             Math.sqrt(4*4 + 3*3); // Updated for faster desktop speed
             vx = (vx / speed) * baseSpeed;
             vy = (vy / speed) * baseSpeed;
             
@@ -207,7 +231,10 @@
         updateDimensions();
         
         // Update dimensions on resize without changing velocity
-        window.addEventListener('resize', updateDimensions);
+        window.addEventListener('resize', function() {
+            updateDimensions();
+            setSpeed();
+        });
         
         // Start animation
         animate();
