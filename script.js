@@ -15,6 +15,36 @@ document.addEventListener('DOMContentLoaded', function() {
         emailInput.focus();
     }
     
+    // Prevent form auto-completion from affecting both fields
+    function preventSharedAutofill() {
+        // Add event listeners to detect when autofill happens
+        const emailFields = [emailInput, emailInputOriginal];
+        
+        emailFields.forEach((field, index) => {
+            if (!field) return;
+            
+            // When input changes (including by autofill)
+            field.addEventListener('input', function(e) {
+                // Only update the current field, not both
+                const otherField = index === 0 ? emailInputOriginal : emailInput;
+                
+                // If the change was from user typing (not autofill), do nothing special
+                if (document.activeElement === field) return;
+                
+                // If it was an autofill event, clear the other field to prevent shared autofill
+                if (otherField && otherField.value === field.value) {
+                    // Only clear the other field if it's not focused
+                    if (document.activeElement !== otherField) {
+                        otherField.value = '';
+                    }
+                }
+            });
+        });
+    }
+    
+    // Call the function to set up autofill prevention
+    preventSharedAutofill();
+    
     // Simplified approach to hide cursor for both inputs
     function setupEmailInput(input, container) {
         if (input && container) {

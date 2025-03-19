@@ -236,6 +236,67 @@ input:-webkit-autofill:active {
     -webkit-text-fill-color: white !important;
     -webkit-box-shadow: 0 0 0 30px #5DCB5D inset !important;
     transition: background-color 5000s ease-in-out 0s;
+    background-color: #5DCB5D !important;
+    border: none !important;
+    caret-color: white;
+}
+
+/* Additional mobile autofill overrides */
+input:autofill,
+input:autofill:hover, 
+input:autofill:focus,
+input:autofill:active {
+    -webkit-text-fill-color: white !important;
+    box-shadow: 0 0 0 30px #5DCB5D inset !important;
+    background-color: #5DCB5D !important;
+    border: none !important;
+    caret-color: white;
+}
+
+/* Explicitly handle Android Chrome background */
+@media only screen and (max-width: 767px) {
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active,
+    input:autofill,
+    input:autofill:hover, 
+    input:autofill:focus,
+    input:autofill:active {
+        -webkit-text-fill-color: white !important;
+        -webkit-box-shadow: 0 0 0 1000px #5DCB5D inset !important;
+        box-shadow: 0 0 0 1000px #5DCB5D inset !important;
+        background-color: #5DCB5D !important;
+        transition: background-color 0s;
+        background-clip: content-box !important;
+    }
+    
+    .email-input {
+        background-color: transparent !important;
+        appearance: none !important;
+        -webkit-appearance: none !important;
+    }
+    
+    /* Force background color by using @supports query for mobile browsers */
+    @supports (-webkit-overflow-scrolling: touch) {
+        .email-section input {
+            background-color: transparent !important;
+        }
+        
+        .email-section {
+            background-color: #5DCB5D !important;
+        }
+    }
+}
+
+/* Special handling for Safari autofill */
+@media not all and (min-resolution:.001dpcm) { 
+    @supports (-webkit-appearance:none) {
+        input:-webkit-autofill {
+            background-color: #5DCB5D !important;
+            -webkit-box-shadow: 0 0 0 1000px #5DCB5D inset !important;
+        }
+    }
 }
 
 .email-input-container {
