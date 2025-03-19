@@ -253,8 +253,40 @@ input:autofill:active {
     caret-color: white;
 }
 
-/* Explicitly handle Android Chrome background */
+/* Media Queries for Mobile Responsiveness */
 @media only screen and (max-width: 767px) {
+    body {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .container {
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+    
+    /* Fix width issues for full-width elements */
+    .email-section {
+        width: 100%;
+        left: 0;
+        transform: none;
+        background-color: #5DCB5D !important;
+    }
+    
+    .releases-header {
+        width: 100%;
+        left: 0;
+        transform: none;
+        font-size: 36px;
+    }
+    
+    .text-section::before {
+        width: 100%;
+        left: 0;
+        transform: none;
+    }
+    
+    /* Strong autofill overrides for mobile */
     input:-webkit-autofill,
     input:-webkit-autofill:hover, 
     input:-webkit-autofill:focus,
@@ -267,32 +299,158 @@ input:autofill:active {
         -webkit-box-shadow: 0 0 0 1000px #5DCB5D inset !important;
         box-shadow: 0 0 0 1000px #5DCB5D inset !important;
         background-color: #5DCB5D !important;
-        transition: background-color 0s;
+        transition: background-color 0s !important;
         background-clip: content-box !important;
+        background-image: none !important;
+        animation-name: none !important;
     }
     
+    /* Direct styles for email inputs and containers */
     .email-input {
-        background-color: transparent !important;
-        appearance: none !important;
+        background-color: #5DCB5D !important;
         -webkit-appearance: none !important;
+        appearance: none !important;
+        border-radius: 0 !important;
+        font-size: 32px;
+        height: 40px;
     }
     
-    /* Force background color by using @supports query for mobile browsers */
-    @supports (-webkit-overflow-scrolling: touch) {
-        .email-section input {
-            background-color: transparent !important;
-        }
-        
-        .email-section {
-            background-color: #5DCB5D !important;
-        }
+    .email-input-container {
+        background-color: #5DCB5D !important;
+    }
+    
+    .new {
+        font-size: 120px;
+    }
+    
+    .nostalgia {
+        font-size: 32px;
+    }
+    
+    .email-text {
+        font-size: 36px;
+    }
+    
+    .enter {
+        font-size: 70px;
+    }
+    
+    .opt {
+        font-size: 36px;
+    }
+    
+    .in {
+        font-size: 300px;
+    }
+    
+    .number {
+        font-size: 36px;
+    }
+    
+    .release-link {
+        font-size: 36px;
+        max-width: 90vw;
+        word-break: break-word;
+    }
+    
+    .footer-links a {
+        font-size: 24px;
+        margin: 5px 0;
+    }
+    
+    .copyright {
+        font-size: 24px;
+    }
+    
+    .nn-logo {
+        height: 24px;
+    }
+    
+    /* Fix input container for mobile */
+    .email-input-container::after {
+        height: 40px;
+    }
+    
+    /* Ensure elements don't overflow on small screens */
+    .releases-list {
+        padding: 20px 15px;
+    }
+    
+    input[name="email-top-section"],
+    input[name="email-bottom-section"] {
+        background: #5DCB5D !important;
+        color: white !important;
+        -webkit-appearance: none !important;
+        appearance: none !important;
+    }
+    
+    /* Override iOS/Chrome styling */
+    input[type="email"]:not(:focus):not(:placeholder-shown) {
+        background-color: #5DCB5D !important;
+        color: white !important;
     }
 }
 
-/* Special handling for Safari autofill */
+@media only screen and (max-width: 480px) {
+    .new {
+        font-size: 100px;
+    }
+    
+    .nostalgia {
+        font-size: 28px;
+    }
+    
+    .email-text {
+        font-size: 30px;
+    }
+    
+    .email-input {
+        font-size: 28px;
+    }
+    
+    .enter {
+        font-size: 60px;
+    }
+    
+    .opt {
+        font-size: 30px;
+    }
+    
+    .in {
+        font-size: 220px;
+    }
+    
+    .releases-header {
+        font-size: 32px;
+    }
+    
+    .number {
+        font-size: 32px;
+    }
+    
+    .release-link {
+        font-size: 30px;
+    }
+}
+
+/* Special iOS styles */
+@supports (-webkit-overflow-scrolling: touch) {
+    .email-section {
+        background-color: #5DCB5D !important;
+    }
+    
+    .email-input,
+    .email-input:-webkit-autofill,
+    .email-input:autofill {
+        background-color: #5DCB5D !important;
+        -webkit-box-shadow: 0 0 0 1000px #5DCB5D inset !important;
+    }
+}
+
+/* Safari-specific styles */
 @media not all and (min-resolution:.001dpcm) { 
     @supports (-webkit-appearance:none) {
-        input:-webkit-autofill {
+        .email-input:-webkit-autofill {
             background-color: #5DCB5D !important;
             -webkit-box-shadow: 0 0 0 1000px #5DCB5D inset !important;
         }
@@ -644,145 +802,7 @@ footer {
     display: none;
 }
 
-/* Media Queries for Mobile Responsiveness */
-@media only screen and (max-width: 767px) {
-    body {
-        width: 100%;
-        max-width: 100%;
-    }
-    
-    .container {
-        padding: 0 10px;
-        box-sizing: border-box;
-    }
-    
-    /* Fix width issues for full-width elements */
-    .email-section {
-        width: 100%;
-        left: 0;
-        transform: none;
-    }
-    
-    .releases-header {
-        width: 100%;
-        left: 0;
-        transform: none;
-    }
-    
-    .text-section::before {
-        width: 100%;
-        left: 0;
-        transform: none;
-    }
-
-    .new {
-        font-size: 120px;
-    }
-    
-    .nostalgia {
-        font-size: 32px;
-    }
-    
-    .email-text {
-        font-size: 36px;
-    }
-    
-    .email-input {
-        font-size: 32px;
-        height: 40px;
-    }
-    
-    .enter {
-        font-size: 70px;
-    }
-    
-    .opt {
-        font-size: 36px;
-    }
-    
-    .in {
-        font-size: 300px;
-    }
-    
-    .releases-header {
-        font-size: 36px;
-    }
-    
-    .number {
-        font-size: 36px;
-    }
-    
-    .release-link {
-        font-size: 36px;
-    }
-    
-    .footer-links a {
-        font-size: 24px;
-        margin: 5px 0;
-    }
-    
-    .copyright {
-        font-size: 24px;
-    }
-    
-    .nn-logo {
-        height: 24px;
-    }
-    
-    /* Fix input container for mobile */
-    .email-input-container::after {
-        height: 40px;
-    }
-    
-    /* Ensure elements don't overflow on small screens */
-    .releases-list {
-        padding: 20px 15px;
-    }
-    
-    .release-link {
-        max-width: 90vw;
-        word-break: break-word;
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    .new {
-        font-size: 100px;
-    }
-    
-    .nostalgia {
-        font-size: 28px;
-    }
-    
-    .email-text {
-        font-size: 30px;
-    }
-    
-    .email-input {
-        font-size: 28px;
-    }
-    
-    .enter {
-        font-size: 60px;
-    }
-    
-    .opt {
-        font-size: 30px;
-    }
-    
-    .in {
-        font-size: 220px;
-    }
-    
-    .releases-header {
-        font-size: 32px;
-    }
-    
-    .number {
-        font-size: 32px;
-    }
-    
-    .release-link {
-        font-size: 30px;
-    }
+/* Force green background on iOS */
+.email-input {
+    background-color: #5DCB5D !important; 
 }

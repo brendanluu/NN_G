@@ -3,22 +3,34 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     const enterButtons = document.querySelectorAll('.enter');
-    const emailInput = document.getElementById('email-input');
-    const emailInputOriginal = document.getElementById('email-input-original');
+    const emailInputTop = document.getElementById('email-input-top');
+    const emailInputBottom = document.getElementById('email-input-bottom');
     const interactiveSection = document.querySelector('.interactive-section');
     const input = document.querySelector('.input');
     const inputContainer = document.querySelector('.input-container');
     const emailInputContainers = document.querySelectorAll('.email-input-container');
     
     // Set focus to the first email input when the page loads
-    if (emailInput) {
-        emailInput.focus();
+    if (emailInputTop) {
+        emailInputTop.focus();
     }
+    
+    // Forcefully clear both inputs on page load to prevent autofill
+    function clearInitialValues() {
+        setTimeout(() => {
+            // Clear both inputs to prevent autofill issues
+            if (emailInputTop) emailInputTop.value = '';
+            if (emailInputBottom) emailInputBottom.value = '';
+        }, 100);
+    }
+    
+    // Call immediately
+    clearInitialValues();
     
     // Prevent form auto-completion from affecting both fields
     function preventSharedAutofill() {
         // Add event listeners to detect when autofill happens
-        const emailFields = [emailInput, emailInputOriginal];
+        const emailFields = [emailInputTop, emailInputBottom];
         
         emailFields.forEach((field, index) => {
             if (!field) return;
@@ -26,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // When input changes (including by autofill)
             field.addEventListener('input', function(e) {
                 // Only update the current field, not both
-                const otherField = index === 0 ? emailInputOriginal : emailInput;
+                const otherField = index === 0 ? emailInputBottom : emailInputTop;
                 
                 // If the change was from user typing (not autofill), do nothing special
                 if (document.activeElement === field) return;
@@ -37,6 +49,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (document.activeElement !== otherField) {
                         otherField.value = '';
                     }
+                }
+            });
+            
+            // Also listen for focus events to clear the other field
+            field.addEventListener('focus', function(e) {
+                const otherField = index === 0 ? emailInputBottom : emailInputTop;
+                if (otherField && !otherField.value.trim()) {
+                    // Force the browser to reset the autofill state
+                    otherField.value = '';
                 }
             });
         });
@@ -70,18 +91,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Setup both email inputs
-    if (emailInput && emailInputContainers[0]) {
-        setupEmailInput(emailInput, emailInputContainers[0]);
+    if (emailInputTop && emailInputContainers[0]) {
+        setupEmailInput(emailInputTop, emailInputContainers[0]);
     }
     
-    if (emailInputOriginal && emailInputContainers[1]) {
-        setupEmailInput(emailInputOriginal, emailInputContainers[1]);
+    if (emailInputBottom && emailInputContainers[1]) {
+        setupEmailInput(emailInputBottom, emailInputContainers[1]);
     }
     
     // Make all ENTER text elements clickable to submit the email
     enterButtons.forEach(function(button, index) {
         button.addEventListener('click', function() {
-            const inputToSubmit = index === 0 ? emailInput : emailInputOriginal;
+            const inputToSubmit = index === 0 ? emailInputTop : emailInputBottom;
             submitEmail(inputToSubmit);
         });
     });
@@ -112,6 +133,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             localStorage.setItem("loops-form-timestamp", timestamp);
+            
+            // Clear the other input field to prevent confusion
+            const otherInput = inputElement.id === 'email-input-top' ? emailInputBottom : emailInputTop;
+            if (otherInput) {
+                otherInput.value = '';
+            }
             
             // Prepare form data
             var formBody = "userGroup=&mailingLists=&email=" + encodeURIComponent(email);
