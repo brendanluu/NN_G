@@ -60,27 +60,108 @@ document.addEventListener('DOMContentLoaded', function() {
         const email = inputElement.value.trim();
         
         if (validateEmail(email)) {
-            // Show the interactive section when a valid email is submitted
-            interactiveSection.style.display = 'block';
-            // You could also save the email or perform other actions here
+            const emailSection = inputElement.closest('.email-section');
+            // Prepare the UI for loading state
+            const enterButton = emailSection.querySelector('.enter');
             
-            // Optional: Add content to the interactive section
-            if (interactiveSection.children.length === 0) {
-                interactiveSection.innerHTML = `
-                    <h3>Thank you for subscribing!</h3>
-                    <p>We'll keep you updated with the latest news.</p>
-                `;
+            // Store original text
+            const originalEnterText = enterButton.innerText;
+            
+            // Show loading state
+            enterButton.innerText = "LOADING...";
+            
+            // Rate limit check
+            var time = new Date();
+            var timestamp = time.valueOf();
+            var previousTimestamp = localStorage.getItem("loops-form-timestamp");
+
+            // If last sign up was less than a minute ago, display error
+            if (previousTimestamp && Number(previousTimestamp) + 60000 > timestamp) {
+                showError(emailSection, "Too many signups, please try again in a little while");
+                return;
             }
+            
+            localStorage.setItem("loops-form-timestamp", timestamp);
+            
+            // Prepare form data
+            var formBody = "userGroup=&mailingLists=&email=" + encodeURIComponent(email);
+            
+            // Send the request to your newsletter service
+            console.log('Submitting email:', email);
+            fetch("https://app.loops.so/api/newsletter-form/clx3ufqjp00cth2d6tk6rmx8c", {
+                method: "POST",
+                mode: 'cors',
+                body: formBody,
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+            })
+            .then((res) => {
+                console.log('Response status:', res.status);
+                if (res.ok) {
+                    // Success
+                    showSuccess(emailSection);
+                    inputElement.value = '';
+                    return;
+                }
+                // Error with response
+                return res.json().then(data => {
+                    throw new Error(data.message || "Error submitting email");
+                });
+            })
+            .catch(error => {
+                // Error with request
+                console.error('Fetch error:', error);
+                showError(emailSection, error.message || "Oops! Something went wrong, please try again");
+                
+                // Reset the button text on error
+                enterButton.innerText = originalEnterText;
+                
+                localStorage.setItem("loops-form-timestamp", '');
+            });
         } else {
             alert('Please enter a valid email address');
             inputElement.focus();
         }
     }
     
-    // Make the phone number clickable
-    const phoneNumber = document.querySelector('.phone');
-    if (phoneNumber) {
-        phoneNumber.innerHTML = `<a href="tel:4152112212" style="color: white; text-decoration: none;">415-211-2212</a>`;
+    function showSuccess(emailSection) {
+        // Hide the interactive section
+        interactiveSection.style.display = 'none';
+        
+        // Change the SUBSCRIBE button to say THANK YOU
+        const enterButton = emailSection.querySelector('.enter');
+        if (enterButton) {
+            enterButton.innerText = "THANK YOU";
+            
+            // After 5 seconds, change it back to SUBSCRIBE
+            setTimeout(() => {
+                enterButton.innerText = "SUBSCRIBE";
+            }, 5000);
+        }
+    }
+    
+    function showError(emailSection, message) {
+        // Show error message in an alert instead of scrolling
+        alert(message);
+        
+        // Don't show the interactive section
+        interactiveSection.style.display = 'none';
+        
+        // Change button text to "PLEASE WAIT" if it's a rate limit error
+        const enterButton = emailSection.querySelector('.enter');
+        if (enterButton) {
+            if (message.includes("Too many signups") || message.includes("rate limit")) {
+                enterButton.innerText = "PLEASE WAIT";
+                
+                // After 60 seconds, change it back to SUBSCRIBE
+                setTimeout(() => {
+                    enterButton.innerText = "SUBSCRIBE";
+                }, 60000);
+            } else {
+                enterButton.innerText = "SUBSCRIBE";
+            }
+        }
     }
     
     function validateEmail(email) {

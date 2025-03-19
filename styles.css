@@ -228,6 +228,16 @@ header {
     display: block;
 }
 
+/* Override browser autofill styling */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-text-fill-color: white !important;
+    -webkit-box-shadow: 0 0 0 30px #5DCB5D inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
 .email-input-container {
     position: relative;
     display: inline-block;
@@ -316,6 +326,23 @@ footer {
 .nn-logo {
     height: 32px; /* Changed from 48px to 32px to match the font size */
     margin: 0 5px;
+}
+
+/* Subscription button style */
+.reset-button {
+    font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
+    font-size: 32px;
+    background-color: #5DCB5D;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 16px;
+}
+
+.reset-button:hover {
+    background-color: #4caa4c;
 }
 
 /* Update the enter text size to 145px */
