@@ -582,3 +582,146 @@ footer {
 .about-page-background {
     display: none;
 }
+
+/* Media Queries for Mobile Responsiveness */
+@media only screen and (max-width: 767px) {
+    body {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .container {
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+    
+    /* Fix width issues for full-width elements */
+    .email-section {
+        width: 100%;
+        left: 0;
+        transform: none;
+    }
+    
+    .releases-header {
+        width: 100%;
+        left: 0;
+        transform: none;
+    }
+    
+    .text-section::before {
+        width: 100%;
+        left: 0;
+        transform: none;
+    }
+
+    .new {
+        font-size: 120px;
+    }
+    
+    .nostalgia {
+        font-size: 32px;
+    }
+    
+    .email-text {
+        font-size: 36px;
+    }
+    
+    .email-input {
+        font-size: 32px;
+        height: 40px;
+    }
+    
+    .enter {
+        font-size: 70px;
+    }
+    
+    .opt {
+        font-size: 36px;
+    }
+    
+    .in {
+        font-size: 300px;
+    }
+    
+    .releases-header {
+        font-size: 36px;
+    }
+    
+    .number {
+        font-size: 36px;
+    }
+    
+    .release-link {
+        font-size: 36px;
+    }
+    
+    .footer-links a {
+        font-size: 24px;
+        margin: 5px 0;
+    }
+    
+    .copyright {
+        font-size: 24px;
+    }
+    
+    .nn-logo {
+        height: 24px;
+    }
+    
+    /* Fix input container for mobile */
+    .email-input-container::after {
+        height: 40px;
+    }
+    
+    /* Ensure elements don't overflow on small screens */
+    .releases-list {
+        padding: 20px 15px;
+    }
+    
+    .release-link {
+        max-width: 90vw;
+        word-break: break-word;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .new {
+        font-size: 100px;
+    }
+    
+    .nostalgia {
+        font-size: 28px;
+    }
+    
+    .email-text {
+        font-size: 30px;
+    }
+    
+    .email-input {
+        font-size: 28px;
+    }
+    
+    .enter {
+        font-size: 60px;
+    }
+    
+    .opt {
+        font-size: 30px;
+    }
+    
+    .in {
+        font-size: 220px;
+    }
+    
+    .releases-header {
+        font-size: 32px;
+    }
+    
+    .number {
+        font-size: 32px;
+    }
+    
+    .release-link {
+        font-size: 30px;
+    }
+}
