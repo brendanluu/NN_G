@@ -2,49 +2,62 @@
 // <script src="script.js"></script>
 
 document.addEventListener('DOMContentLoaded', function() {
-    const enterButton = document.querySelector('.enter');
+    const enterButtons = document.querySelectorAll('.enter');
     const emailInput = document.getElementById('email-input');
+    const emailInputOriginal = document.getElementById('email-input-original');
     const interactiveSection = document.querySelector('.interactive-section');
     const input = document.querySelector('.input');
     const inputContainer = document.querySelector('.input-container');
-    const emailInputContainer = document.querySelector('.email-input-container');
+    const emailInputContainers = document.querySelectorAll('.email-input-container');
     
-    // Set focus to the email input when the page loads
+    // Set focus to the first email input when the page loads
     if (emailInput) {
         emailInput.focus();
     }
     
-    // Simplified approach to hide cursor
-    if (emailInput && emailInputContainer) {
-        // Hide cursor when field is clicked
-        emailInput.addEventListener('click', function() {
-            emailInputContainer.classList.add('hide-cursor');
-        });
-        
-        // Also hide on focus (for keyboard navigation)
-        emailInput.addEventListener('focus', function() {
-            emailInputContainer.classList.add('hide-cursor');
-        });
+    // Simplified approach to hide cursor for both inputs
+    function setupEmailInput(input, container) {
+        if (input && container) {
+            // Hide cursor when field is clicked
+            input.addEventListener('click', function() {
+                container.classList.add('hide-cursor');
+            });
+            
+            // Also hide on focus (for keyboard navigation)
+            input.addEventListener('focus', function() {
+                container.classList.add('hide-cursor');
+            });
+            
+            // Submit when pressing Enter key in the input field
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    submitEmail(input);
+                    return false;
+                }
+            });
+        }
     }
     
-    // Make the ENTER text clickable to submit the email
-    enterButton.addEventListener('click', function() {
-        submitEmail();
+    // Setup both email inputs
+    if (emailInput && emailInputContainers[0]) {
+        setupEmailInput(emailInput, emailInputContainers[0]);
+    }
+    
+    if (emailInputOriginal && emailInputContainers[1]) {
+        setupEmailInput(emailInputOriginal, emailInputContainers[1]);
+    }
+    
+    // Make all ENTER text elements clickable to submit the email
+    enterButtons.forEach(function(button, index) {
+        button.addEventListener('click', function() {
+            const inputToSubmit = index === 0 ? emailInput : emailInputOriginal;
+            submitEmail(inputToSubmit);
+        });
     });
     
-    // Also submit when pressing Enter key in the input field
-    if (emailInput) {
-        emailInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                submitEmail();
-                return false;
-            }
-        });
-    }
-    
-    function submitEmail() {
-        const email = emailInput.value.trim();
+    function submitEmail(inputElement) {
+        const email = inputElement.value.trim();
         
         if (validateEmail(email)) {
             // Show the interactive section when a valid email is submitted
@@ -60,13 +73,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } else {
             alert('Please enter a valid email address');
-            emailInput.focus();
+            inputElement.focus();
         }
     }
     
     // Make the phone number clickable
     const phoneNumber = document.querySelector('.phone');
-    phoneNumber.innerHTML = `<a href="tel:4152112212" style="color: white; text-decoration: none;">415-211-2212</a>`;
+    if (phoneNumber) {
+        phoneNumber.innerHTML = `<a href="tel:4152112212" style="color: white; text-decoration: none;">415-211-2212</a>`;
+    }
     
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -74,42 +89,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Hide the cursor when input is focused
-    input.addEventListener('focus', function() {
-        inputContainer.classList.add('input-focused');
-    });
-    
-    input.addEventListener('blur', function() {
-        inputContainer.classList.remove('input-focused');
-    });
-    
-    // Auto-resize textarea as user types
-    // if (emailInput && emailInput.tagName === 'TEXTAREA') {
-    //     // Function to adjust height based on content
-    //     function adjustHeight() {
-    //         // Reset height temporarily
-    //         emailInput.style.height = 'auto';
-    //         
-    //         // Calculate the height based on scrollHeight
-    //         const newHeight = emailInput.scrollHeight;
-    //         
-    //         // Apply the new height
-    //         emailInput.style.height = newHeight + 'px';
-    //         
-    //         console.log('New height:', newHeight);
-    //     }
-    //     
-    //     // Set initial height
-    //     emailInput.style.height = '52px';
-    //     
-    //     // Add event listener for input
-    //     emailInput.addEventListener('input', adjustHeight);
-    //     
-    //     // Also adjust on window resize
-    //     window.addEventListener('resize', adjustHeight);
-    //     
-    //     // Initial adjustment
-    //     setTimeout(adjustHeight, 100);
-    // }
+    if (input) {
+        input.addEventListener('focus', function() {
+            inputContainer.classList.add('input-focused');
+        });
+        
+        input.addEventListener('blur', function() {
+            inputContainer.classList.remove('input-focused');
+        });
+    }
 
     // Add event listener to phone number
     const phoneLink = document.querySelector('.phone');

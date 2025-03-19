@@ -100,11 +100,15 @@ header {
     display: block; /* Make it a block element like before */
 }
 
+/* Opt In Section */
 .opt {
     font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
     font-size: 48px; /* Increased from 24px to 48px */
     font-weight: normal;
     padding: 16px 0 0 0;
+    text-align: center;
+    background-color: white;
+    color: #5DCB5D;
 }
 
 .in {
@@ -113,6 +117,9 @@ header {
     font-weight: normal;
     line-height: .7;
     padding: 0 0 32px 0;
+    text-align: center;
+    background-color: white;
+    color: #5DCB5D;
 }
 
 /* Releases Section */
@@ -193,6 +200,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 2px;
 }
 
 .email-text {
@@ -258,12 +266,12 @@ header {
 
 .enter {
     font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
-    font-size: 145px; /* Changed from 80px to 145px */
+    font-size: 100px; /* Reduced from 145px to make SUBSCRIBE fit well */
     font-weight: normal;
     line-height: 1;
     margin-top: 10px;
     cursor: pointer;
-    text-decoration: underline; /* Add underline to ENTER */
+    text-decoration: underline; /* Add underline to SUBSCRIBE */
 }
 
 .interactive-section {
