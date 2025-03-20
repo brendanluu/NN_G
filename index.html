@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>New Nostalgia Group</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </head>
 <body>
     <div class="container">
@@ -16,7 +18,8 @@
         </header>
         
         <div class="email-section">
-            <div class="email-text">EMAIL:</div>
+            <div class="type-text">TYPE</div>
+            <div class="email-text">YOUR EMAIL...</div>
             <div class="email-input-container">
                 <input type="email" 
                        id="email-input-top" 
@@ -46,30 +49,26 @@
         <div class="opt">OPT</div>
         <div class="in">IN</div>
         
-        <div class="releases-section">
-            <div class="releases-header">RELEASES</div>
-            <div class="releases-list">
-                <div class="release">
-                    <div class="number">4.</div>
-                    <a href="StroboboatNNMar2025.pdf" class="release-link red">Stroboboat-NN-G.pdf</a>
-                </div>
-                <div class="release">
-                    <div class="number">3.</div>
-                    <a href="OutOfTheBoxNNFeb2025.pdf" class="release-link blue">Out-Of-The-Box-NN-G.pdf</a>
-                </div>
-                <div class="release">
-                    <div class="number">2.</div>
-                    <a href="AiBeaconNN2024.pdf" class="release-link yellow">Ai-Beacon-NN-G.pdf</a>
-                </div>
-                <div class="release">
-                    <div class="number">1.</div>
-                    <a href="ThrowUrPhoneIntoTheLakeNN2023.pdf" class="release-link red">Throw-Ur-Phone-Into-The-Lake-NN-G.pdf</a>
+        <div class="placeholder-section">
+            <div class="upcoming-header">UPCOMING</div>
+            <div class="upcoming-list">
+                <div class="upcoming-event">
+                    <div class="event-content">
+                        <span class="event-date">SUN MAR 30</span><br>
+                        <span class="event-title">NEW NOSTALGIA PRESENTS: <span class="foggydome blue">FOGGYDOME</span></span><br>
+                        <!-- Calendly link widget begin -->
+                        <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/jorponciano/foggy-dome?primary_color=4285F4'});return false;" class="event-action blue">BOOK A SPOT</a>
+                        <!-- Calendly link widget end --><br>
+                        <span class="event-details">(Limited 40)<br>
+                        [$0.00]</span>
+                    </div>
                 </div>
             </div>
         </div>
         
         <div class="email-section">
-            <div class="email-text">EMAIL:</div>
+            <div class="type-text">TYPE</div>
+            <div class="email-text">YOUR EMAIL...</div>
             <div class="email-input-container">
                 <input type="email" 
                        id="email-input-bottom" 

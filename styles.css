@@ -205,7 +205,7 @@ header {
 
 .email-text {
     font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
-    font-size: 48px;
+    font-size: 32px; /* Changed from 48px to 32px */
     font-weight: normal;
     margin-bottom: 10px;
 }
@@ -228,233 +228,38 @@ header {
     display: block;
 }
 
-/* Override browser autofill styling */
+/* Move these important iOS/mobile fixes outside the media query */
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-    -webkit-text-fill-color: white !important;
-    -webkit-box-shadow: 0 0 0 30px #5DCB5D inset !important;
-    transition: background-color 5000s ease-in-out 0s;
-    background-color: #5DCB5D !important;
-    border: none !important;
-    caret-color: white;
-}
-
-/* Additional mobile autofill overrides */
+input:-webkit-autofill:active,
 input:autofill,
 input:autofill:hover, 
 input:autofill:focus,
 input:autofill:active {
     -webkit-text-fill-color: white !important;
-    box-shadow: 0 0 0 30px #5DCB5D inset !important;
+    -webkit-box-shadow: 0 0 0 1000px #5DCB5D inset !important;
+    box-shadow: 0 0 0 1000px #5DCB5D inset !important;
     background-color: #5DCB5D !important;
-    border: none !important;
-    caret-color: white;
+    transition: background-color 0s !important;
+    background-clip: content-box !important;
+    background-image: none !important;
+    animation-name: none !important;
 }
 
-/* Media Queries for Mobile Responsiveness */
-@media only screen and (max-width: 767px) {
-    body {
-        width: 100%;
-        max-width: 100%;
-    }
-    
-    .container {
-        padding: 0 10px;
-        box-sizing: border-box;
-    }
-    
-    /* Fix width issues for full-width elements */
-    .email-section {
-        width: 100%;
-        left: 0;
-        transform: none;
-        background-color: #5DCB5D !important;
-    }
-    
-    .releases-header {
-        width: 100%;
-        left: 0;
-        transform: none;
-        font-size: 36px;
-    }
-    
-    .text-section::before {
-        width: 100%;
-        left: 0;
-        transform: none;
-    }
-    
-    /* Strong autofill overrides for mobile */
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover, 
-    input:-webkit-autofill:focus,
-    input:-webkit-autofill:active,
-    input:autofill,
-    input:autofill:hover, 
-    input:autofill:focus,
-    input:autofill:active {
-        -webkit-text-fill-color: white !important;
-        -webkit-box-shadow: 0 0 0 1000px #5DCB5D inset !important;
-        box-shadow: 0 0 0 1000px #5DCB5D inset !important;
-        background-color: #5DCB5D !important;
-        transition: background-color 0s !important;
-        background-clip: content-box !important;
-        background-image: none !important;
-        animation-name: none !important;
-    }
-    
-    /* Direct styles for email inputs and containers */
-    .email-input {
-        background-color: #5DCB5D !important;
-        -webkit-appearance: none !important;
-        appearance: none !important;
-        border-radius: 0 !important;
-        font-size: 32px;
-        height: 40px;
-    }
-    
-    .email-input-container {
-        background-color: #5DCB5D !important;
-    }
-    
-    .new {
-        font-size: 120px;
-    }
-    
-    .nostalgia {
-        font-size: 32px;
-    }
-    
-    .email-text {
-        font-size: 36px;
-    }
-    
-    .enter {
-        font-size: 70px;
-    }
-    
-    .opt {
-        font-size: 36px;
-    }
-    
-    .in {
-        font-size: 300px;
-    }
-    
-    .number {
-        font-size: 36px;
-    }
-    
-    .release-link {
-        font-size: 36px;
-        max-width: 90vw;
-        word-break: break-word;
-    }
-    
-    .footer-links a {
-        font-size: 24px;
-        margin: 5px 0;
-    }
-    
-    .copyright {
-        font-size: 24px;
-    }
-    
-    .nn-logo {
-        height: 24px;
-    }
-    
-    /* Fix input container for mobile */
-    .email-input-container::after {
-        height: 40px;
-    }
-    
-    /* Ensure elements don't overflow on small screens */
-    .releases-list {
-        padding: 20px 15px;
-    }
-    
-    input[name="email-top-section"],
-    input[name="email-bottom-section"] {
-        background: #5DCB5D !important;
-        color: white !important;
-        -webkit-appearance: none !important;
-        appearance: none !important;
-    }
-    
-    /* Override iOS/Chrome styling */
-    input[type="email"]:not(:focus):not(:placeholder-shown) {
-        background-color: #5DCB5D !important;
-        color: white !important;
-    }
+/* Ensure iOS input styling works */
+input[name="email-top-section"],
+input[name="email-bottom-section"] {
+    background: #5DCB5D !important;
+    color: white !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
 }
 
-@media only screen and (max-width: 480px) {
-    .new {
-        font-size: 100px;
-    }
-    
-    .nostalgia {
-        font-size: 28px;
-    }
-    
-    .email-text {
-        font-size: 30px;
-    }
-    
-    .email-input {
-        font-size: 28px;
-    }
-    
-    .enter {
-        font-size: 60px;
-    }
-    
-    .opt {
-        font-size: 30px;
-    }
-    
-    .in {
-        font-size: 220px;
-    }
-    
-    .releases-header {
-        font-size: 32px;
-    }
-    
-    .number {
-        font-size: 32px;
-    }
-    
-    .release-link {
-        font-size: 30px;
-    }
-}
-
-/* Special iOS styles */
-@supports (-webkit-overflow-scrolling: touch) {
-    .email-section {
-        background-color: #5DCB5D !important;
-    }
-    
-    .email-input,
-    .email-input:-webkit-autofill,
-    .email-input:autofill {
-        background-color: #5DCB5D !important;
-        -webkit-box-shadow: 0 0 0 1000px #5DCB5D inset !important;
-    }
-}
-
-/* Safari-specific styles */
-@media not all and (min-resolution:.001dpcm) { 
-    @supports (-webkit-appearance:none) {
-        .email-input:-webkit-autofill {
-            background-color: #5DCB5D !important;
-            -webkit-box-shadow: 0 0 0 1000px #5DCB5D inset !important;
-        }
-    }
+/* Ensure iOS/Chrome input styling works */
+input[type="email"]:not(:focus):not(:placeholder-shown) {
+    background-color: #5DCB5D !important;
+    color: white !important;
 }
 
 .email-input-container {
@@ -495,7 +300,7 @@ input:autofill:active {
 
 .enter {
     font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
-    font-size: 100px; /* Reduced from 145px to make SUBSCRIBE fit well */
+    font-size: 80px; /* Reduced from 145px to make SUBSCRIBE fit well */
     font-weight: normal;
     line-height: 1;
     margin-top: 10px;
@@ -745,7 +550,7 @@ footer {
 .animation-container {
     width: 100vw;
     padding: 40px 0 40px;
-    background-color: #5DCB5D; /* Green background like in the image */
+    background-color: #5DCB5D;
     position: relative;
     overflow: hidden;
     left: 50%;
@@ -754,8 +559,8 @@ footer {
 
 /* Updated for JavaScript animation */
 .outer-circle {
-    width: 90vw;
-    height: 90vw;
+    width: 90vw; /* Restore responsive width */
+    height: 90vw; /* Restore responsive height */
     max-width: 800px;
     max-height: 800px;
     background-color: white;
@@ -766,10 +571,10 @@ footer {
 }
 
 .inner-circle {
-    width: 30vw; /* Increased from 25vw */
-    height: 30vw; /* Increased from 25vw */
-    max-width: 240px; /* Increased from 200px */
-    max-height: 240px; /* Increased from 200px */
+    width: 30vw; /* Restore responsive width */
+    height: 30vw; /* Restore responsive height */
+    max-width: 240px;
+    max-height: 240px;
     background-color: #5DCB5D;
     border-radius: 50%;
     position: absolute;
@@ -782,10 +587,10 @@ footer {
 .circle-text {
     color: white;
     font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
-    font-size: min(6vw, 48px); /* Reduced from 8vw, 64px */
+    font-size: min(6vw, 48px); /* Restore responsive font size */
     text-align: center;
     line-height: 1.2;
-    width: 90%; /* Ensure text stays within circle */
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -802,7 +607,123 @@ footer {
     display: none;
 }
 
-/* Force green background on iOS */
-.email-input {
-    background-color: #5DCB5D !important; 
+/* Type text above email - change color to white */
+.type-text {
+    font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
+    font-size: 185px;
+    font-weight: normal;
+    line-height: 0.9;
+    color: white; /* Changed from #5DCB5D to white */
+    text-align: center;
+    margin-top: -16px;
 }
+
+/* Upcoming Section */
+.upcoming-header {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 48px;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.upcoming-list {
+    padding: 20px 30px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.upcoming-event {
+    display: flex;
+    flex-direction: column;
+    margin: 48px 0 48px;
+    align-items: center;
+    text-align: center;
+}
+
+.event-content {
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 1.2;
+    font-family: Helvetica, Arial, sans-serif; /* Ensure normal Helvetica */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    display: inline-block;
+    margin-bottom: 10px;
+    text-align: center;
+    color: black; /* Default color is black */
+}
+
+.event-date, .event-title {
+    color: black; /* Explicitly set to black */
+    font-family: Helvetica, Arial, sans-serif; /* Ensure normal Helvetica */
+}
+
+.foggydome {
+    font-family: Helvetica, Arial, sans-serif; /* Ensure normal Helvetica */
+}
+
+.event-action, .event-details {
+    color: #4285F4; /* Blue color for action and details */
+    font-family: Helvetica, Arial, sans-serif; /* Ensure normal Helvetica */
+}
+
+.event-action {
+    text-decoration: underline;
+}
+
+/* Update event content to be all blue */
+.event-content.blue,
+.event-content.blue .event-date,
+.event-content.blue .event-title,
+.event-content.blue .foggydome,
+.event-content.blue .event-action,
+.event-content.blue .event-details {
+    color: #4285F4; /* Blue color for all event content */
+    font-family: Helvetica, Arial, sans-serif; /* Ensure normal Helvetica */
+}
+
+/* Keep the underline on BOOK A SPOT */
+.event-action {
+    text-decoration: underline;
+}
+
+/* Set specific color for these elements */
+.event-date {
+    color: black !important; /* Force black color for FRI MAR 30 */
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.event-details {
+    color: black !important; /* Force black color for (Limited 40) and [$0.00] */
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+/* Make sure the container class doesn't override the colors */
+.event-content.blue .event-date,
+.event-content.blue .event-details {
+    color: black !important;
+}
+
+/* Update the event title to have parts of it blue */
+.event-title {
+    color: black; /* Default color is black */
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+/* Make "NEW NOSTALGIA PRESENTS:" blue */
+.event-title {
+    color: #4285F4 !important; /* Make the entire event title blue */
+}
+
+/* Make sure both parts are blue, even with the event-content.blue selector */
+.event-content.blue .event-title {
+    color: #4285F4 !important;
+}
+
