@@ -770,14 +770,3 @@ footer {
     line-height: 1;
 }
 
-/* Add a specific class for the price text */
-.event-details .price-text {
-    color: #FBBC05 !important; /* Use the yellow color */
-    font-family: Helvetica, Arial, sans-serif;
-}
-
-/* Make sure the container class doesn't override the price color */
-.event-content.blue .event-details .price-text {
-    color: #FBBC05 !important;
-}
-
