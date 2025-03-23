@@ -150,17 +150,39 @@
             return distance + innerRadius > outerRadius;
         }
         
-        // Keep the scroll detection and pause
+        // Improved scroll/touch detection for mobile
         let isScrolling = false;
         let scrollTimeout;
 
-        window.addEventListener('scroll', function() {
+        // Function to set scrolling state
+        function setScrolling() {
             isScrolling = true;
             clearTimeout(scrollTimeout);
             scrollTimeout = setTimeout(function() {
                 isScrolling = false;
-            }, 100); // Wait 100ms after scrolling stops
+            }, 200); // Increased from 100ms to 200ms for better mobile support
+        }
+
+        // Detect standard scrolling (works on most devices)
+        window.addEventListener('scroll', setScrolling);
+
+        // Add touch events specifically for mobile
+        document.addEventListener('touchstart', setScrolling);
+        document.addEventListener('touchmove', setScrolling);
+        document.addEventListener('touchend', function() {
+            // Keep scrolling active briefly after touch ends
+            setTimeout(function() {
+                if (!isScrolling) {
+                    setScrolling();
+                }
+            }, 50);
         });
+
+        // Also detect resize events which often occur during mobile scrolling
+        window.addEventListener('resize', setScrolling);
+
+        // Add visibility change detection (for when browser UI appears/disappears)
+        document.addEventListener('visibilitychange', setScrolling);
         
         // Calculate bounce direction with some randomness
         function bounce() {
