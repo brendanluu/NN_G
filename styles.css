@@ -19,6 +19,21 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'HelveticaNeueLT-HeavyCond', Arial, Helvetica, sans-serif;
+    /* Prevent text selection across the entire site - enhanced for mobile */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none; /* Prevent iOS callout menu on long-press */
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+}
+
+/* Allow text selection for input fields only */
+input, textarea {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
 body {
