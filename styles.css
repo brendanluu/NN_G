@@ -598,10 +598,35 @@ footer {
 
 /* About page specific styles */
 .about-page header {
-    background-color: white; /* Revert to white background */
-    color: #5DCB5D; /* Revert to green text */
-    position: static;
-    z-index: auto;
+    background-color: white; /* Ensure white background */
+    color: #5DCB5D; /* Ensure green text */
+    padding: 16px 0 16px 0;
+    text-align: center;
+}
+
+/* Make sure about page uses the same header styling as homepage */
+.about-page .new {
+    font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
+    font-size: 190px;
+    font-weight: normal;
+    line-height: .9;
+}
+
+.about-page .nostalgia {
+    font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
+    font-size: 48px;
+    font-weight: normal;
+    line-height: 1;
+}
+
+/* Ensure the logo displays correctly on about page */
+.about-page .header-logo {
+    height: 40px;
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+    width: 56px;
+    margin-top: -10px;
 }
 
 /* Remove the full-page green background */
@@ -768,5 +793,12 @@ footer {
     font-size: 48px;
     font-weight: normal;
     line-height: 1;
+}
+
+/* Target the price text specifically */
+.event-details .price-text {
+    color: #FBBC05 !important; /* Make it yellow */
+    font-family: Helvetica, Arial, sans-serif;
+
 }
 

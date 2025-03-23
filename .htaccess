@@ -1,0 +1,7 @@
+# Remove index.html from URLs
+RewriteEngine On
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.html\ HTTP/
+RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
+
+# Serve index.html when directory is requested
+DirectoryIndex index.html 
