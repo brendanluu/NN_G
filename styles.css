@@ -280,13 +280,20 @@ input[type="email"]:not(:focus):not(:placeholder-shown) {
     transform: translate(-50%, -50%);
     animation: blink 1s step-end infinite;
     pointer-events: none;
+    display: block; /* Explicitly set display to block */
+    opacity: 1; /* Ensure it's visible */
 }
 
-/* Hide cursor when input is focused */
+/* Update the cursor hiding on focus behavior */
 .email-input:focus ~ .email-input-container::after,
-.email-input-container:has(.email-input:focus)::after,
-.input-focused::after {
-    display: none;
+.email-input-container.input-focused::after {
+    display: none !important; /* Add !important to override other styles */
+}
+
+/* Since the previous selectors won't work correctly with the structure,
+   we need to use a class-based approach instead */
+.email-input-container.input-focused::after {
+    display: none !important;
 }
 
 @keyframes blink {

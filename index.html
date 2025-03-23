@@ -268,6 +268,46 @@
         .addEventListener("click", resetFormHandler);
       formContainer.classList.add("newsletter-handlers-added");
     }
+
+    // Add this after your existing scripts
+    document.addEventListener('DOMContentLoaded', function() {
+        // Force repaint of cursor elements to ensure they're visible on mobile
+        const cursorElements = document.querySelectorAll('.email-input-container');
+        cursorElements.forEach(function(el) {
+            // Toggle a class to force a repaint
+            el.classList.add('force-visible');
+            setTimeout(function() {
+                el.classList.remove('force-visible');
+            }, 10);
+        });
+    });
+
+    // Add this script block after your existing DOMContentLoaded event
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all email input fields
+        const emailInputs = document.querySelectorAll('.email-input');
+        
+        // Add focus and blur event listeners to each input
+        emailInputs.forEach(function(input) {
+            // When the input gets focus
+            input.addEventListener('focus', function() {
+                // Find the parent container and add the focused class
+                const container = this.closest('.email-input-container');
+                if (container) {
+                    container.classList.add('input-focused');
+                }
+            });
+            
+            // When the input loses focus
+            input.addEventListener('blur', function() {
+                // Find the parent container and remove the focused class
+                const container = this.closest('.email-input-container');
+                if (container) {
+                    container.classList.remove('input-focused');
+                }
+            });
+        });
+    });
     </script>
 </body>
 </html> 
