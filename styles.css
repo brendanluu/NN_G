@@ -36,7 +36,7 @@ body {
 header {
     background-color: white; /* Changed from green to white */
     color: #5DCB5D; /* Changed text color to green */
-    padding: 20px 0;
+    padding: 16px 0 16px 0;
     text-align: center;
 }
 
@@ -350,8 +350,8 @@ footer {
 .nn-logo {
     height: 28px;
     margin: 0 5px;
-    /* Apply the same updated filter */
-    filter: invert(68%) sepia(74%) saturate(380%) hue-rotate(83deg) brightness(92%) contrast(92%);
+    /* Remove the filter that was making it green */
+    filter: none;
 }
 
 /* Subscription button style */
@@ -703,8 +703,14 @@ footer {
 }
 
 .event-details {
-    color: black !important; /* Force black color for (Limited 40) and [$0.00] */
+    color: black !important; /* Keep the default color black */
+}
+
+/* Add a specific class or target the limited text */
+.event-details .limited-text {
+    color: #D93025 !important; /* Use the red color */
     font-family: Helvetica, Arial, sans-serif;
+
 }
 
 /* Make sure the container class doesn't override the colors */
@@ -750,9 +756,10 @@ footer {
     width: auto;
     display: inline-block;
     vertical-align: middle;
-    /* Updated filter for better #5DCB5D match */
-    filter: invert(68%) sepia(74%) saturate(380%) hue-rotate(83deg) brightness(92%) contrast(92%);
-    margin-top: 3px;
+    width: 56px;
+    margin-top: -10px;
+
+
 }
 
 /* Update the nostalgia class to accommodate the logo */
@@ -761,5 +768,16 @@ footer {
     font-size: 48px;
     font-weight: normal;
     line-height: 1;
+}
+
+/* Add a specific class for the price text */
+.event-details .price-text {
+    color: #FBBC05 !important; /* Use the yellow color */
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+/* Make sure the container class doesn't override the price color */
+.event-content.blue .event-details .price-text {
+    color: #FBBC05 !important;
 }
 
