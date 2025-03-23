@@ -49,7 +49,7 @@ header {
 
 .nostalgia {
     font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
-    font-size: 48px; /* Increased from 24px to 48px */
+    font-size: 48px;
     font-weight: normal;
     line-height: 1;
 }
@@ -348,8 +348,10 @@ footer {
 }
 
 .nn-logo {
-    height: 32px; /* Changed from 48px to 32px to match the font size */
+    height: 28px;
     margin: 0 5px;
+    /* Apply the same updated filter */
+    filter: invert(68%) sepia(74%) saturate(380%) hue-rotate(83deg) brightness(92%) contrast(92%);
 }
 
 /* Subscription button style */
@@ -665,7 +667,7 @@ footer {
     font-family: Helvetica, Arial, sans-serif; /* Ensure normal Helvetica */
 }
 
-.foggydome {
+.holodome {
     font-family: Helvetica, Arial, sans-serif; /* Ensure normal Helvetica */
 }
 
@@ -682,7 +684,7 @@ footer {
 .event-content.blue,
 .event-content.blue .event-date,
 .event-content.blue .event-title,
-.event-content.blue .foggydome,
+.event-content.blue .holodome,
 .event-content.blue .event-action,
 .event-content.blue .event-details {
     color: #4285F4; /* Blue color for all event content */
@@ -725,5 +727,39 @@ footer {
 /* Make sure both parts are blue, even with the event-content.blue selector */
 .event-content.blue .event-title {
     color: #4285F4 !important;
+}
+
+/* Update the class name from foggydome to holodome */
+.holodome {
+    font-family: Helvetica, Arial, sans-serif; /* Ensure normal Helvetica */
+}
+
+/* Remove the old foggydome class */
+/* .foggydome {
+    font-family: Helvetica, Arial, sans-serif;
+} */
+
+/* Update any references in other selectors */
+.event-content.blue .holodome {
+    color: #4285F4; /* Blue color */
+}
+
+/* Update the header logo styling for a smaller size and correct green color */
+.header-logo {
+    height: 40px;
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+    /* Updated filter for better #5DCB5D match */
+    filter: invert(68%) sepia(74%) saturate(380%) hue-rotate(83deg) brightness(92%) contrast(92%);
+    margin-top: 3px;
+}
+
+/* Update the nostalgia class to accommodate the logo */
+.nostalgia {
+    font-family: 'HelveticaNeueLT-HeavyCond', sans-serif;
+    font-size: 48px;
+    font-weight: normal;
+    line-height: 1;
 }
 
