@@ -67,20 +67,20 @@
         
         // Animation variables with device-specific speeds
         let x, y;           // Position
-        let vx, vy;         // Velocity variables
+        let vx, vy;         // Velocity variables - these control the speed
         let maxX, maxY;     // Boundaries
         let outerRadius, innerRadius; // Circle radii
         
         // Set speed based on device
         function setSpeed() {
             if (isMobileDevice()) {
-                // Slower speed for mobile
-                vx = 1.0;        // X velocity - reduced from 1.5 to 1.0
-                vy = -0.75;      // Y velocity - reduced from -1.125 to -0.75
+                // Keep mobile speed the same
+                vx = 1.0;        // X velocity
+                vy = -0.75;      // Y velocity
             } else {
-                // Keep the faster speed for desktop
-                vx = 4;          // X velocity for desktop
-                vy = -3;         // Y velocity for desktop
+                // Even slower speed for desktop - further reduced from 2/-1.5 to 1.5/-1.125
+                vx = 1.5;        // X velocity for desktop (reduced from 2.0)
+                vy = -1.125;     // Y velocity for desktop (reduced from -1.5)
             }
         }
         
@@ -182,10 +182,10 @@
             
             // Normalize velocity to maintain consistent speed
             const speed = Math.sqrt(vx * vx + vy * vy);
-            // Calculate baseSpeed dynamically based on current vx and vy values
+            // Update baseSpeed calculation with new slower desktop values
             const baseSpeed = isMobileDevice() ? 
-                             Math.sqrt(1.0*1.0 + 0.75*0.75) : // Updated for slower mobile speed
-                             Math.sqrt(4*4 + 3*3);
+                             Math.sqrt(1.0*1.0 + 0.75*0.75) : // Mobile speed (unchanged)
+                             Math.sqrt(1.5*1.5 + 1.125*1.125); // Desktop speed (further reduced)
             vx = (vx / speed) * baseSpeed;
             vy = (vy / speed) * baseSpeed;
             
