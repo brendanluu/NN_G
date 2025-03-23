@@ -19,13 +19,14 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'HelveticaNeueLT-HeavyCond', Arial, Helvetica, sans-serif;
-    /* Prevent text selection across the entire site - enhanced for mobile */
+    /* Keep text non-selectable but restore tap highlight */
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
     -webkit-touch-callout: none; /* Prevent iOS callout menu on long-press */
-    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+    /* Remove this line to restore default tap highlight */
+    /* -webkit-tap-highlight-color: transparent; */
 }
 
 /* Allow text selection for input fields only */
