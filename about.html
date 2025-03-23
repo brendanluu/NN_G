@@ -133,7 +133,7 @@
             circleText.innerHTML = textOptions[currentTextIndex];
         }
         
-        // Check if inner circle is hitting the boundary of outer circle
+        // Revert to the original collision detection without the buffer
         function isColliding() {
             // Calculate centers
             const outerCenterX = outerRadius;
@@ -146,9 +146,21 @@
             const dy = innerCenterY - outerCenterY;
             const distance = Math.sqrt(dx * dx + dy * dy);
             
-            // If distance between centers is greater than difference of radii, collision occurs
+            // Original collision detection without buffer
             return distance + innerRadius > outerRadius;
         }
+        
+        // Keep the scroll detection and pause
+        let isScrolling = false;
+        let scrollTimeout;
+
+        window.addEventListener('scroll', function() {
+            isScrolling = true;
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(function() {
+                isScrolling = false;
+            }, 100); // Wait 100ms after scrolling stops
+        });
         
         // Calculate bounce direction with some randomness
         function bounce() {
@@ -201,26 +213,28 @@
             changeText();
         }
         
-        // Animation function
+        // Keep the animation pause during scrolling
         function animate() {
-            // Update position
-            x += vx;
-            y += vy;
-            
-            // Check for collision with circular boundary
-            if (isColliding()) {
-                bounce();
+            if (!isScrolling) {
+                // Update position
+                x += vx;
+                y += vy;
+                
+                // Check for collision with circular boundary
+                if (isColliding()) {
+                    bounce();
+                }
+                
+                // Simple boundary checks for safety
+                if (x < 0) x = 0;
+                if (y < 0) y = 0;
+                if (x > maxX) x = maxX;
+                if (y > maxY) y = maxY;
+                
+                // Apply position
+                innerCircle.style.left = x + 'px';
+                innerCircle.style.top = y + 'px';
             }
-            
-            // Simple boundary checks for safety
-            if (x < 0) x = 0;
-            if (y < 0) y = 0;
-            if (x > maxX) x = maxX;
-            if (y > maxY) y = maxY;
-            
-            // Apply position
-            innerCircle.style.left = x + 'px';
-            innerCircle.style.top = y + 'px';
             
             // Continue animation
             requestAnimationFrame(animate);
