@@ -606,6 +606,12 @@ footer {
     line-height: 1.2;
     width: 90%;
     margin: 0 auto;
+    /* Prevent text selection */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
 }
 
 /* About page specific styles */

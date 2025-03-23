@@ -150,9 +150,11 @@
             return distance + innerRadius > outerRadius;
         }
         
-        // Improved scroll/touch detection for mobile
+        // Improved interaction detection for mobile
         let isScrolling = false;
+        let isTouching = false;  // New variable to track touch state
         let scrollTimeout;
+        let touchTimeout;
 
         // Function to set scrolling state
         function setScrolling() {
@@ -160,28 +162,44 @@
             clearTimeout(scrollTimeout);
             scrollTimeout = setTimeout(function() {
                 isScrolling = false;
-            }, 200); // Increased from 100ms to 200ms for better mobile support
+            }, 200);
         }
 
-        // Detect standard scrolling (works on most devices)
+        // Function to set touching state
+        function setTouching(touching) {
+            isTouching = touching;
+            if (!touching) {
+                // Add a small delay before considering touch ended
+                clearTimeout(touchTimeout);
+                touchTimeout = setTimeout(function() {
+                    isTouching = false;
+                }, 100);
+            }
+        }
+
+        // Detect standard scrolling
         window.addEventListener('scroll', setScrolling);
 
-        // Add touch events specifically for mobile
-        document.addEventListener('touchstart', setScrolling);
-        document.addEventListener('touchmove', setScrolling);
-        document.addEventListener('touchend', function() {
-            // Keep scrolling active briefly after touch ends
-            setTimeout(function() {
-                if (!isScrolling) {
-                    setScrolling();
-                }
-            }, 50);
+        // Touch event listeners
+        document.addEventListener('touchstart', function(e) {
+            setTouching(true);
+            setScrolling(); // Also set scrolling state since touch may lead to scroll
         });
 
-        // Also detect resize events which often occur during mobile scrolling
-        window.addEventListener('resize', setScrolling);
+        document.addEventListener('touchmove', function(e) {
+            setScrolling();
+        });
 
-        // Add visibility change detection (for when browser UI appears/disappears)
+        document.addEventListener('touchend', function(e) {
+            setTouching(false);
+        });
+
+        document.addEventListener('touchcancel', function(e) {
+            setTouching(false);
+        });
+
+        // Resize and visibility events
+        window.addEventListener('resize', setScrolling);
         document.addEventListener('visibilitychange', setScrolling);
         
         // Calculate bounce direction with some randomness
@@ -235,10 +253,10 @@
             changeText();
         }
         
-        // Keep the animation pause during scrolling
+        // Update animate function to check both scrolling and touching
         function animate() {
-            if (!isScrolling) {
-                // Update position
+            if (!isScrolling && !isTouching) {
+                // Only animate when not scrolling AND not touching
                 x += vx;
                 y += vy;
                 
