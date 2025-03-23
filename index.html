@@ -269,11 +269,46 @@
       formContainer.classList.add("newsletter-handlers-added");
     }
 
-    // Add this after your existing scripts
+    // Replace the existing DOM ready handler with this simplified version
     document.addEventListener('DOMContentLoaded', function() {
+        // Get direct references to both inputs and their containers
+        const topInput = document.getElementById('email-input-top');
+        const bottomInput = document.getElementById('email-input-bottom');
+        
+        // Find the direct parent container for each input
+        const topContainer = topInput.parentElement;
+        const bottomContainer = bottomInput.parentElement;
+        
+        // Clear any existing focus handlers to avoid conflicts
+        topInput.removeEventListener('focus', null);
+        topInput.removeEventListener('blur', null);
+        bottomInput.removeEventListener('focus', null);
+        bottomInput.removeEventListener('blur', null);
+        
+        // Set up focus handlers for top input
+        topInput.addEventListener('focus', function() {
+            console.log('Top input focused');
+            topContainer.classList.add('input-focused');
+        });
+        
+        topInput.addEventListener('blur', function() {
+            console.log('Top input blurred');
+            topContainer.classList.remove('input-focused');
+        });
+        
+        // Set up focus handlers for bottom input
+        bottomInput.addEventListener('focus', function() {
+            console.log('Bottom input focused');
+            bottomContainer.classList.add('input-focused');
+        });
+        
+        bottomInput.addEventListener('blur', function() {
+            console.log('Bottom input blurred');
+            bottomContainer.classList.remove('input-focused');
+        });
+        
         // Force repaint of cursor elements to ensure they're visible on mobile
-        const cursorElements = document.querySelectorAll('.email-input-container');
-        cursorElements.forEach(function(el) {
+        [topContainer, bottomContainer].forEach(function(el) {
             // Toggle a class to force a repaint
             el.classList.add('force-visible');
             setTimeout(function() {
@@ -282,29 +317,22 @@
         });
     });
 
-    // Add this script block after your existing DOMContentLoaded event
+    // Add this after your existing scripts
     document.addEventListener('DOMContentLoaded', function() {
-        // Get all email input fields
         const emailInputs = document.querySelectorAll('.email-input');
+        const emailContainers = document.querySelectorAll('.email-input-container');
         
-        // Add focus and blur event listeners to each input
-        emailInputs.forEach(function(input) {
-            // When the input gets focus
-            input.addEventListener('focus', function() {
-                // Find the parent container and add the focused class
-                const container = this.closest('.email-input-container');
-                if (container) {
-                    container.classList.add('input-focused');
-                }
-            });
-            
-            // When the input loses focus
-            input.addEventListener('blur', function() {
-                // Find the parent container and remove the focused class
-                const container = this.closest('.email-input-container');
-                if (container) {
-                    container.classList.remove('input-focused');
-                }
+        // Initially show cursors
+        emailContainers.forEach(container => {
+            container.classList.add('show-cursor');
+        });
+        
+        // When any input is clicked, hide all cursors permanently
+        emailInputs.forEach(input => {
+            input.addEventListener('click', function() {
+                emailContainers.forEach(container => {
+                    container.classList.remove('show-cursor');
+                });
             });
         });
     });

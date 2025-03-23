@@ -269,6 +269,12 @@ input[type="email"]:not(:focus):not(:placeholder-shown) {
     max-width: 100%; /* Changed from 300px to 100% */
 }
 
+/* Fix cursor indicator hiding when input is focused */
+.email-input-container.input-focused::after {
+    display: none !important;
+}
+
+/* Ensure cursor works properly in normal state */
 .email-input-container::after {
     content: '';
     width: 1px;
@@ -280,19 +286,18 @@ input[type="email"]:not(:focus):not(:placeholder-shown) {
     transform: translate(-50%, -50%);
     animation: blink 1s step-end infinite;
     pointer-events: none;
-    display: block; /* Explicitly set display to block */
-    opacity: 1; /* Ensure it's visible */
+    display: none; /* Change from block to none by default */
+    opacity: 1;
 }
 
-/* Update the cursor hiding on focus behavior */
-.email-input:focus ~ .email-input-container::after,
-.email-input-container.input-focused::after {
-    display: none !important; /* Add !important to override other styles */
+/* Add a class to show the cursor specifically */
+.email-input-container.show-cursor::after {
+    display: block;
 }
 
-/* Since the previous selectors won't work correctly with the structure,
-   we need to use a class-based approach instead */
-.email-input-container.input-focused::after {
+/* Add this rule to hide cursor when input is focused */
+.email-input:focus + .email-input-container::after,
+.email-input:focus ~ .email-input-container::after {
     display: none !important;
 }
 
