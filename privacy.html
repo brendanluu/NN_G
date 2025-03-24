@@ -6,12 +6,12 @@
     <title>Privacy Policy - New Nostalgia</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Privacy Policy content styling - 24px bold Helvetica, center-aligned */
+        /* Privacy Policy content styling - 24px bold Helvetica, left-aligned */
         .privacy-content {
             padding: 20px 30px 20px;
             max-width: 1200px;
             margin: 0 auto;
-            text-align: left;
+            text-align: left; /* Changed from center to left */
         }
         
         /* Apply 24px bold Helvetica to ALL text elements in privacy content */
@@ -22,10 +22,10 @@
         .privacy-content li,
         .privacy-content strong,
         .privacy-content a {
-            font-family: Helvetica, Arial, sans-serif; /* Regular Helvetica, not condensed */
-            font-size: 24px; /* Exactly 24px as requested */
-            font-weight: bold; /* Bold weight for all text */
-            text-align: left; /* Changed from left to center */
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: left; /* Changed from center to left */
             line-height: 1.2;
         }
         
@@ -52,9 +52,10 @@
             width: 80%;
         }
         
+        /* Update list styling for left alignment */
         .privacy-content ul {
-            list-style-position: inside; /* For better center alignment */
-            padding-left: 0;
+            list-style-position: outside; /* Changed from inside to outside for left alignment */
+            padding-left: 40px; /* Add padding for bullets */
         }
         
         /* Change all link colors in privacy content to black */
@@ -63,24 +64,11 @@
             text-decoration: underline;
         }
         
-        /* Remove any responsive adjustments to keep text consistent */
+        /* Remove different sizes for h1 and h2 in mobile media query */
         @media (max-width: 768px) {
             .privacy-content h1,
-            .privacy-content h2,
-            .privacy-content p,
-            .privacy-content ul,
-            .privacy-content li,
-            .privacy-content strong,
-            .privacy-content a {
-                font-size: 24px; /* Keep consistent on mobile */
-            }
-            
-            .privacy-content h1 {
-                font-size: 36px; /* Keep consistent on mobile */
-            }
-            
             .privacy-content h2 {
-                font-size: 30px; /* Keep consistent on mobile */
+                font-size: 24px; /* Keep all text at 24px */
             }
         }
     </style>
@@ -164,11 +152,12 @@
         <footer>
             <div class="footer-links">
                 <a href="index.html">HOME</a>
+                <a href="about.html">ABOUT</a>
                 <a href="mailto:wwwnewnostalgia@gmail.com">CONTACT</a>
                 <a href="privacy.html">PRIVACY POLICY</a>
             </div>
             <div class="copyright">
-                <img src="assets/NN-G_logo.svg" alt="NN-G Logo" class="nn-logo">
+                <img src="assets/NN-G_logo_black.svg" alt="NN-G Logo" class="nn-logo">
                 2025
             </div>
         </footer>
