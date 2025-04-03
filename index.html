@@ -54,13 +54,21 @@
             <div class="upcoming-list">
                 <div class="upcoming-event">
                     <div class="event-content">
+                        <span class="event-date">SAT APR 5<br>8PM</span><br>
+                        <span class="event-title">NEW NOSTALGIA PRESENTS: <span class="holodome blue">HOLODOME 2</span></span><br>
+                        <span class="hayes-text">(HAYES VALLEY POP-UP HAPPENING)</span><br>
+                        <a href="#" onclick="scrollToEmail(); return false;" class="event-action price-text" style="text-decoration: underline;">SUBSCRIBE FOR DETAILS</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add the new PAST section -->
+            <div class="upcoming-header">PAST</div>
+            <div class="upcoming-list">
+                <div class="upcoming-event past-event">
+                    <div class="event-content">
                         <span class="event-date">SUN MAR 30</span><br>
-                        <span class="event-title">NEW NOSTALGIA PRESENTS: <span class="holodome blue">HOLODOME</span></span><br>
-                        <!-- Calendly link widget begin -->
-                        <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/jorponciano/holo-dome?primary_color=4285F4'});return false;" class="event-action blue">BOOK NOW</a>
-                        <!-- Calendly link widget end --><br>
-                        <span class="event-details"><span class="limited-text">(Limited 40)</span><br>
-                        <span class="price-text">[$0.00]</span></span>
+                        <span class="event-title">NEW NOSTALGIA PRESENTS: <span class="holodome blue">HOLODOME</span></span>
                     </div>
                 </div>
             </div>
@@ -336,6 +344,17 @@
             });
         });
     });
+
+    // Add this function to your existing scripts
+    function scrollToEmail() {
+        const emailSection = document.querySelector('.email-section');
+        emailSection.scrollIntoView({ behavior: 'smooth' });
+        
+        // Optional: focus the input after scrolling
+        setTimeout(() => {
+            document.getElementById('email-input-top').focus();
+        }, 800); // Wait for scroll to complete
+    }
     </script>
 </body>
 </html> 

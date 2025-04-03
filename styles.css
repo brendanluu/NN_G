@@ -192,7 +192,7 @@ header {
 }
 
 .red {
-    color: #D93025;
+    color: #FF0000 !important; /* Using the same red as limited-text */
 }
 
 .blue {
@@ -692,10 +692,15 @@ footer {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
+    margin-top: 40px;
+}
+
+.upcoming-header:first-child {
+    margin-top: 0; /* Remove top margin from the first header */
 }
 
 .upcoming-list {
-    padding: 21px 30px;
+    padding: 21px 8px;
     font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -767,9 +772,8 @@ footer {
 
 /* Add a specific class or target the limited text */
 .event-details .limited-text {
-    color: #D93025 !important; /* Use the red color */
+    color: #D93025 !important; /* Changed from #FF0000 back to original red */
     font-family: Helvetica, Arial, sans-serif;
-
 }
 
 /* Make sure the container class doesn't override the colors */
@@ -817,8 +821,6 @@ footer {
     vertical-align: middle;
     width: 56px;
     margin-top: -10px;
-
-
 }
 
 /* Update the nostalgia class to accommodate the logo */
@@ -831,8 +833,40 @@ footer {
 
 /* Target the price text specifically */
 .event-details .price-text {
-    color: #FBBC05 !important; /* Make it yellow */
+    color: #FBBC05 !important; /* Changed from #FFD700 back to original yellow */
     font-family: Helvetica, Arial, sans-serif;
+}
 
+/* Add styling for past events */
+.past-event .event-content {
+    opacity: 0.5; /* Make past events appear faded */
+}
+
+.past-event .event-title,
+.past-event .holodome,
+.past-event .event-date,
+.past-event .event-details {
+    color: black !important; /* Override any existing color styles */
+}
+
+/* Add the new pink color class */
+.pink {
+    color: #d64b96 !important;
+}
+
+/* Make the subscribe link use the same yellow as price-text */
+.event-action.price-text {
+    color: #FBBC05 !important; /* Changed from #FFD700 back to original yellow */
+    text-decoration: underline;
+}
+
+.time-text {
+    font-family: Helvetica, Arial, sans-serif; /* Regular Helvetica */
+    color: #D93025 !important; /* Same red as limited-text */
+}
+
+.hayes-text {
+    font-family: Helvetica, Arial, sans-serif; /* Regular Helvetica */
+    color: #D93025 !important; /* Same red as limited-text */
 }
 
