@@ -132,7 +132,7 @@ header {
     font-size: 400px; /* Changed from 80px to 400px */
     font-weight: normal;
     line-height: .7;
-    padding: 0 0 32px 0;
+    padding: 0 0 60px 0;
     text-align: center;
     background-color: white;
     color: #5DCB5D;
@@ -700,7 +700,7 @@ footer {
 }
 
 .upcoming-list {
-    padding: 21px 8px;
+    padding: 0px 8px;
     font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -716,28 +716,28 @@ footer {
     font-weight: bold;
     font-size: 48px;
     line-height: 1.2;
-    font-family: Helvetica, Arial, sans-serif; /* Ensure normal Helvetica */
+    font-family: Helvetica, Arial, sans-serif;
     word-wrap: break-word;
     overflow-wrap: break-word;
     max-width: 100%;
     display: inline-block;
     margin-bottom: 10px;
     text-align: center;
-    color: black; /* Default color is black */
+    color: black;
 }
 
 .event-date, .event-title {
-    color: black; /* Explicitly set to black */
-    font-family: Helvetica, Arial, sans-serif; /* Ensure normal Helvetica */
+    color: black;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 .holodome {
-    font-family: Helvetica, Arial, sans-serif; /* Ensure normal Helvetica */
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 .event-action, .event-details {
-    color: #4285F4; /* Blue color for action and details */
-    font-family: Helvetica, Arial, sans-serif; /* Ensure normal Helvetica */
+    color: #4285F4;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 .event-action {
@@ -751,8 +751,8 @@ footer {
 .event-content.blue .holodome,
 .event-content.blue .event-action,
 .event-content.blue .event-details {
-    color: #4285F4; /* Blue color for all event content */
-    font-family: Helvetica, Arial, sans-serif; /* Ensure normal Helvetica */
+    color: #4285F4;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 /* Keep the underline on BOOK A SPOT */
@@ -762,17 +762,17 @@ footer {
 
 /* Set specific color for these elements */
 .event-date {
-    color: black !important; /* Force black color for FRI MAR 30 */
+    color: black !important;
     font-family: Helvetica, Arial, sans-serif;
 }
 
 .event-details {
-    color: black !important; /* Keep the default color black */
+    color: black !important;
 }
 
 /* Add a specific class or target the limited text */
 .event-details .limited-text {
-    color: #D93025 !important; /* Changed from #FF0000 back to original red */
+    color: #D93025 !important;
     font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -784,13 +784,13 @@ footer {
 
 /* Update the event title to have parts of it blue */
 .event-title {
-    color: black; /* Default color is black */
+    color: black;
     font-family: Helvetica, Arial, sans-serif;
 }
 
 /* Make "NEW NOSTALGIA PRESENTS:" blue */
 .event-title {
-    color: #4285F4 !important; /* Make the entire event title blue */
+    color: #4285F4 !important;
 }
 
 /* Make sure both parts are blue, even with the event-content.blue selector */
@@ -800,7 +800,7 @@ footer {
 
 /* Update the class name from foggydome to holodome */
 .holodome {
-    font-family: Helvetica, Arial, sans-serif; /* Ensure normal Helvetica */
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 /* Remove the old foggydome class */
@@ -810,7 +810,7 @@ footer {
 
 /* Update any references in other selectors */
 .event-content.blue .holodome {
-    color: #4285F4; /* Blue color */
+    color: #4285F4;
 }
 
 /* Update the header logo styling for a smaller size and correct green color */
@@ -833,20 +833,20 @@ footer {
 
 /* Target the price text specifically */
 .event-details .price-text {
-    color: #FBBC05 !important; /* Changed from #FFD700 back to original yellow */
+    color: #FBBC05 !important;
     font-family: Helvetica, Arial, sans-serif;
 }
 
 /* Add styling for past events */
 .past-event .event-content {
-    opacity: 0.5; /* Make past events appear faded */
+    opacity: 0.5;
 }
 
 .past-event .event-title,
 .past-event .holodome,
 .past-event .event-date,
 .past-event .event-details {
-    color: black !important; /* Override any existing color styles */
+    color: black !important;
 }
 
 /* Add the new pink color class */
@@ -856,17 +856,106 @@ footer {
 
 /* Make the subscribe link use the same yellow as price-text */
 .event-action.price-text {
-    color: #FBBC05 !important; /* Changed from #FFD700 back to original yellow */
+    color: #FBBC05 !important;
     text-decoration: underline;
 }
 
 .time-text {
-    font-family: Helvetica, Arial, sans-serif; /* Regular Helvetica */
-    color: #D93025 !important; /* Same red as limited-text */
+    font-family: Helvetica, Arial, sans-serif;
+    color: #D93025 !important;
 }
 
-.hayes-text {
-    font-family: Helvetica, Arial, sans-serif; /* Regular Helvetica */
-    color: #D93025 !important; /* Same red as limited-text */
+/* Replace hayes-text, beacon-text, and throw-text with numbered classes */
+.text-3 {
+    font-family: Helvetica, Arial, sans-serif;
+    color: #ccc !important; /* Temporarily gray */
+}
+
+.text-2 {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: #ccc !important; /* Temporarily gray */
+}
+
+.text-1 {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: #ccc !important; /* Temporarily gray */
+}
+
+/* Remove old classes */
+.hayes-text,
+.beacon-text,
+.throw-text {
+    /* These can be removed */
+}
+
+/* Consolidate all text color classes */
+.color-blue {
+    color: #4285F4 !important;
+}
+
+.color-red {
+    color: #D93025 !important;
+}
+
+.color-yellow {
+    color: #FBBC05 !important;
+}
+
+/* Base styles for all event text */
+.event-text {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+}
+
+/* Remove redundant date and details styles */
+.event-date,
+.event-details,
+.event-title {
+    composes: event-text;
+    color: black !important;
+}
+
+/* Remove redundant classes and use composition */
+.time-text {
+    composes: event-text;
+    color: #D93025 !important;
+}
+
+.text-2,
+.text-1 {
+    composes: event-text;
+}
+
+/* Past events styling consolidated */
+.past-event .event-content * {
+    opacity: 0.5;
+    color: black !important;
+}
+
+/* Remove redundant selectors */
+.event-action {
+    text-decoration: underline;
+}
+
+/* Add new gray color class */
+.color-gray {
+    color: #ccc !important;
+}
+
+/* Update the numbered text classes to use regular Helvetica */
+.text-3 {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.text-2 {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+}
+
+.text-1 {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
 }
 
