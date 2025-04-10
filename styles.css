@@ -959,3 +959,8 @@ footer {
     font-weight: bold;
 }
 
+/* Add green color class */
+.color-green {
+    color: #5DCB5D !important;
+}
+
