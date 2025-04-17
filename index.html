@@ -50,41 +50,21 @@
         <div class="in">IN</div>
         
         <div class="placeholder-section">
-            <div class="upcoming-header">UPCOMING</div>
+            <div class="upcoming-header">RELEASES</div>
             <div class="upcoming-list">
                 <div class="upcoming-event">
                     <div class="event-content">
-                        <span class="event-date">RELEASES</span><br>
-                        3.
-                        <br><span class="text-3 color-gray">HoloDome.pdf</span><br>
                         2.
-                        <br><span class="text-2 color-gray">AiBeacon.pdf</span><br>
+                        <br><span class="text-2 color-blue">NN-HoloDome.pdf</span><br>
                         1.
-                        <br><span class="text-1 color-gray">ThrowUrPhone.pdf</span><br>
-                        (COMING SOON)
-                        <a href="#" onclick="scrollToEmail(); return false;" class="event-action color-green" style="text-decoration: underline;">SUBSCRIBE FOR RELEASES</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Add the new PAST section -->
-            <div class="upcoming-header">PAST</div>
-            <div class="upcoming-list">
-                <div class="upcoming-event">
-                    <div class="event-content color-gray">
-                       
-                        <span class="event-date color-gray">SAT APR 5 '25</span><br>
-                        <span class="event-title color-gray">NEW NOSTALGIA PRESENTS: <span class="event-text color-gray">HOLODOME 2</span></span>
-                        <br>
+                        <br><span class="text-1 color-red">NN-AiBeacon.pdf</span><br>
                         
-                        <br>
-                        <span class="event-date color-gray">SUN MAR 30 '25</span><br>
-                        <span class="event-title color-gray">NEW NOSTALGIA PRESENTS: <span class="event-text color-gray">HOLODOME</span></span>
+                        
                     </div>
                 </div>
             </div>
         </div>
-        
+        </div>
         <div class="email-section">
             <div class="type-text">TYPE</div>
             <div class="email-text">YOUR EMAIL...</div>
@@ -98,11 +78,11 @@
                        name="email-bottom-section"
                        style="background-color: #5DCB5D !important;">
             </div>
-            <div class="enter">SUBSCRIBE</div>
+            <div class="enter" onclick="submitEmail('bottom')">SUBSCRIBE</div>
             
             <div class="newsletter-form-container" style="display:none;">
                 <form class="newsletter-form" action="https://app.loops.so/api/newsletter-form/clx3ufqjp00cth2d6tk6rmx8c" method="POST">
-                    <input type="email" class="newsletter-form-input" name="email-hidden-bottom" autocomplete="off">
+                    <input type="email" class="newsletter-form-input" name="email-hidden-top" autocomplete="off">
                     <button type="submit" class="newsletter-form-button">Subscribe</button>
                     <button type="button" class="newsletter-loading-button" style="display:none;">Loading...</button>
                 </form>
@@ -112,11 +92,6 @@
                     <button class="newsletter-back-button" style="display:none;">Back</button>
                 </div>
             </div>
-        </div>
-        
-        <div class="interactive-section">
-            <h2>Interactive Features</h2>
-            <!-- Interactive content will be here -->
         </div>
         
         <footer>
