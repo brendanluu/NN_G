@@ -83,7 +83,8 @@ document.addEventListener('DOMContentLoaded', function() {
             input.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' && !e.shiftKey) {
                     e.preventDefault();
-                    submitEmail(input);
+                    const section = input.id === 'email-input-top' ? 'top' : 'bottom';
+                    submitEmail(section);
                     return false;
                 }
             });
@@ -102,16 +103,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Make all ENTER text elements clickable to submit the email
     enterButtons.forEach(function(button, index) {
         button.addEventListener('click', function() {
-            const inputToSubmit = index === 0 ? emailInputTop : emailInputBottom;
-            submitEmail(inputToSubmit);
+            const section = index === 0 ? 'top' : 'bottom';
+            submitEmail(section);
         });
     });
     
-    function submitEmail(inputElement) {
-        const email = inputElement.value.trim();
+    function submitEmail(section) {
+        const email = document.getElementById(`email-input-${section}`).value.trim();
         
         if (validateEmail(email)) {
-            const emailSection = inputElement.closest('.email-section');
+            const emailSection = document.querySelector(`.email-section.${section}`);
             // Prepare the UI for loading state
             const enterButton = emailSection.querySelector('.enter');
             
@@ -124,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Rate limit check
             var time = new Date();
             var timestamp = time.valueOf();
-            var previousTimestamp = localStorage.getItem("loops-form-timestamp");
+            var previousTimestamp = localStorage.getItem(`loops-form-timestamp-${section}`);
 
             // If last sign up was less than a minute ago, display error
             if (previousTimestamp && Number(previousTimestamp) + 60000 > timestamp) {
@@ -132,19 +133,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            localStorage.setItem("loops-form-timestamp", timestamp);
-            
-            // Clear the other input field to prevent confusion
-            const otherInput = inputElement.id === 'email-input-top' ? emailInputBottom : emailInputTop;
-            if (otherInput) {
-                otherInput.value = '';
-            }
+            localStorage.setItem(`loops-form-timestamp-${section}`, timestamp);
             
             // Prepare form data
             var formBody = "userGroup=&mailingLists=&email=" + encodeURIComponent(email);
             
             // Send the request to your newsletter service
-            console.log('Submitting email:', email);
+            console.log(`Submitting email: ${email}`);
             fetch("https://app.loops.so/api/newsletter-form/clx3ufqjp00cth2d6tk6rmx8c", {
                 method: "POST",
                 mode: 'cors',
@@ -158,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (res.ok) {
                     // Success
                     showSuccess(emailSection);
-                    inputElement.value = '';
+                    document.getElementById(`email-input-${section}`).value = '';
                     return;
                 }
                 // Error with response
@@ -174,11 +169,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Reset the button text on error
                 enterButton.innerText = originalEnterText;
                 
-                localStorage.setItem("loops-form-timestamp", '');
+                localStorage.setItem(`loops-form-timestamp-${section}`, '');
             });
         } else {
             alert('Please enter a valid email address');
-            inputElement.focus();
+            document.getElementById(`email-input-${section}`).focus();
         }
     }
     
