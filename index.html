@@ -186,6 +186,30 @@
             return;
         }
         
+        // Check rate limit before proceeding
+        var time = new Date();
+        var timestamp = time.valueOf();
+        var previousTimestamp = localStorage.getItem("loops-form-timestamp");
+        
+        if (previousTimestamp && Number(previousTimestamp) + 60000 > timestamp) {
+            // Show rate limit message
+            alert("Too many signups, please try again in a little while");
+            
+            // Update the enter button text
+            const enterButton = emailInput.closest('.email-section').querySelector('.enter');
+            if (enterButton) {
+                enterButton.innerText = "PLEASE WAIT";
+                
+                // After 60 seconds, change it back to SUBSCRIBE
+                setTimeout(() => {
+                    enterButton.innerText = "SUBSCRIBE";
+                    // Clear the rate limit timestamp
+                    localStorage.removeItem("loops-form-timestamp");
+                }, 60000);
+            }
+            return;
+        }
+        
         // Set the hidden input value to match the visible input
         hiddenInput.value = emailInput.value;
         
@@ -235,6 +259,9 @@
             // Reset form state
             if (loadingButton) loadingButton.style.display = "none";
             if (submitButton) submitButton.style.display = "flex";
+            
+            // Prevent the form from submitting
+            return false;
         }
     
         // Compare current time with time of previous sign up
@@ -243,11 +270,12 @@
         var previousTimestamp = localStorage.getItem("loops-form-timestamp");
     
         // If last sign up was less than a minute ago
-        // display error
+        // display error and prevent submission
         if (previousTimestamp && Number(previousTimestamp) + 60000 > timestamp) {
-            rateLimit();
-            return;
+            return rateLimit();
         }
+        
+        // Only proceed with submission if we're not rate limited
         localStorage.setItem("loops-form-timestamp", timestamp);
     
         if (submitButton) submitButton.style.display = "none";
@@ -298,6 +326,10 @@
             .catch(error => {
                 // check for cloudflare error
                 if (error.message === "Failed to fetch") {
+                    // Don't show another error if we're already rate limited
+                    if (previousTimestamp && Number(previousTimestamp) + 60000 > timestamp) {
+                        return;
+                    }
                     rateLimit();
                     return;
                 }
