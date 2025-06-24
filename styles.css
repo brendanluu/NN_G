@@ -972,3 +972,100 @@ footer {
     color: #5DCB5D !important;
 }
 
+/* New Upcoming Section Styles */
+.new-upcoming-section {
+    background-color: white;
+    padding: 10px 0 30px;
+    width: 100%;
+}
+
+.new-upcoming-header {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 48px;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 40px;
+}
+
+.new-upcoming-list {
+    padding: 20px 30px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.new-upcoming-event {
+    display: flex;
+    flex-direction: column;
+    margin: 48px 0 0 0;
+    align-items: center;
+    text-align: center;
+}
+
+.new-event-content {
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 1.2;
+    font-family: Helvetica, Arial, sans-serif;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    display: inline-block;
+    margin-bottom: 10px;
+    text-align: center;
+    color: black;
+}
+.new-event-content2 {
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 1.2;
+    font-family: Helvetica, Arial, sans-serif;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    display: inline-block;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #4285F4 !important;
+}
+.new-event-content3 {
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 1.2;
+    font-family: Helvetica, Arial, sans-serif;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    display: inline-block;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #D93025 !important;
+}
+.new-event-content4 {
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 1.2;
+    font-family: Helvetica, Arial, sans-serif !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    display: inline-block;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #FBBC05 !important;
+}
+
+.new-event-content4 a {
+    font-family: Helvetica, Arial, sans-serif !important;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 1.2;
+    color: #FBBC05 !important;
+    text-decoration: underline;
+}
+
