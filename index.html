@@ -117,15 +117,43 @@
                 <div class="upcoming-event">
                     <div class="event-content">
                         3.
-                        <br><a href="assets/NN-Vitarave.pdf" class="text-3 color-blue" target="_blank">NN-Vitarave.pdf</a><br>
+                        <br><img src="assets/Thumbnails/Vitarave-Thumb.png" alt="Vitarave Thumbnail" class="release-thumbnail">
+                        <a href="assets/NN-Vitarave.pdf" class="text-3 color-blue" target="_blank">NN-Vitarave.pdf</a><br><br><br>
                         2.
-                        <br><a href="assets/NN-HoloDome.pdf" class="text-2 color-red" target="_blank">NN-HoloDome.pdf</a><br>
+                        <br><img src="assets/Thumbnails/HoloDome-Thumb.png" alt="HoloDome Thumbnail" class="release-thumbnail">
+                        <a href="assets/NN-HoloDome.pdf" class="text-2 color-red" target="_blank">NN-HoloDome.pdf</a><br><br><br>
                         1.
-                        <br><a href="assets/NN-AiBeacon.pdf" class="text-1 color-yellow" target="_blank">NN-AiBeacon.pdf</a><br>
+                        <br><img src="assets/Thumbnails/AiBeacon-Thumb.png" alt="AiBeacon Thumbnail" class="release-thumbnail">
+                        <a href="assets/NN-AiBeacon.pdf" class="text-1 color-yellow" target="_blank">NN-AiBeacon.pdf</a><br>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Gallery Section -->
+        <div class="gallery-section">
+            <div class="gallery-container">
+                <div class="gallery-slide active">
+                    <img src="assets/NN-Website/HoloDome_Hero_Alt1.png" alt="HoloDome Hero Alt 1" class="gallery-image">
+                </div>
+                <div class="gallery-slide">
+                    <img src="assets/NN-Website/HoloDome_Hero.png" alt="HoloDome Hero" class="gallery-image">
+                </div>
+                <div class="gallery-slide">
+                    <img src="assets/NN-Website/HD3_NN.JPG" alt="HD3 NN" class="gallery-image">
+                </div>
+                <div class="gallery-slide">
+                    <img src="assets/NN-Website/HD2_KellyBrendan.png" alt="HD2 Kelly Brendan" class="gallery-image">
+                </div>
+                <div class="gallery-slide">
+                    <img src="assets/NN-Website/AiBeacon_Hero.png" alt="AiBeacon Hero" class="gallery-image">
+                </div>
+                <div class="gallery-slide">
+                    <img src="assets/NN-Website/001.jpg" alt="001" class="gallery-image">
+                </div>
+            </div>
+        </div>
+        
         </div>
         <div class="email-section">
             <div class="type-text">TYPE</div>
@@ -163,6 +191,7 @@
         <footer>
             <div class="footer-links">
                 <a href="about.html">ABOUT</a>
+                <a href="gallery.html">GALLERY</a>
                 <a href="mailto:wwwnewnostalgia@gmail.com">INQUIRY</a>
                 <a href="privacy.html">PRIVACY POLICY</a>
             </div>
@@ -206,6 +235,58 @@
 
         // Clear any existing rate limit timestamps on page load
         localStorage.removeItem("loops-form-timestamp");
+        
+        // Gallery functionality
+        let currentGalleryIndex = 0;
+        const gallerySlides = document.querySelectorAll('.gallery-slide');
+        const totalGallerySlides = gallerySlides.length;
+        let galleryAutoAdvance = true;
+        let galleryInterval;
+
+        function showGallerySlide(index) {
+            // Hide all slides
+            gallerySlides.forEach(slide => {
+                slide.classList.remove('active');
+                slide.style.display = 'none';
+            });
+            
+            // Show current slide
+            gallerySlides[currentGalleryIndex].classList.add('active');
+            gallerySlides[currentGalleryIndex].style.display = 'flex';
+        }
+
+        function nextGallerySlide() {
+            currentGalleryIndex = (currentGalleryIndex + 1) % totalGallerySlides;
+            showGallerySlide(currentGalleryIndex);
+        }
+
+        function startGalleryAutoAdvance() {
+            galleryAutoAdvance = true;
+            galleryInterval = setInterval(nextGallerySlide, 1500);
+        }
+
+        function stopGalleryAutoAdvance() {
+            galleryAutoAdvance = false;
+            clearInterval(galleryInterval);
+        }
+
+        // Gallery click handler
+        const galleryContainer = document.querySelector('.gallery-container');
+        if (galleryContainer) {
+            galleryContainer.addEventListener('click', function() {
+                if (galleryAutoAdvance) {
+                    // If auto-advancing, stop it and advance once
+                    stopGalleryAutoAdvance();
+                    nextGallerySlide();
+                } else {
+                    // If stopped, advance to next slide
+                    nextGallerySlide();
+                }
+            });
+        }
+
+        // Start auto-advance
+        startGalleryAutoAdvance();
     });
 
     function submitEmail(section) {
