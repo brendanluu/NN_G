@@ -734,6 +734,68 @@ footer {
     color: black;
 }
 
+/* Upcoming section specific styling */
+.upcoming-section {
+    background-color: white;
+    padding: 10px 0 30px;
+    width: 100%;
+}
+
+.upcoming-section .upcoming-header {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 48px;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.upcoming-section .upcoming-list {
+    padding: 20px 30px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.upcoming-section .upcoming-event {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    align-items: center;
+    text-align: center;
+}
+
+.upcoming-section .event-content {
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 1.2;
+    font-family: Helvetica, Arial, sans-serif;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    display: inline-block;
+    text-align: center;
+    color: black;
+}
+
+.upcoming-section .event-image {
+    margin-bottom: 20px;
+}
+
+.upcoming-section .event-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.upcoming-section .event-link {
+    margin-top: 20px;
+}
+
 .event-date, .event-title {
     color: black;
     font-family: Helvetica, Arial, sans-serif;
@@ -1082,7 +1144,8 @@ footer {
 
 .ticket-link:hover {
     color: #4caa4c;
-=======
+}
+
 /* Gallery Section Styles */
 .gallery-section {
     background-color: black;
