@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gallery - New Nostalgia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: black;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'HelveticaNeueLT-HeavyCond', Arial, Helvetica, sans-serif;
+        }
+
+        .carousel-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 90vw;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .gallery-header {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            color: white;
+            font-size: 24px;
+            font-weight: normal;
+        }
+
+        .close-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 32px;
+            cursor: pointer;
+            font-family: 'HelveticaNeueLT-HeavyCond', Arial, Helvetica, sans-serif;
+        }
+
+        .image-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            color: white;
+            font-size: 16px;
+            font-family: 'HelveticaNeueLT-HeavyCond', Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-header">GALLERY</div>
+    <button class="close-button" onclick="window.location.href='index.html'">×</button>
+    <div class="image-counter">
+        <span id="current-image">1</span> / <span id="total-images">6</span>
+    </div>
+
+    <div class="carousel-container">
+        <div class="carousel-slide active">
+            <img src="assets/NN-Website/HoloDome_Hero_Alt1.png" alt="HoloDome Hero Alt 1" class="carousel-image">
+        </div>
+        <div class="carousel-slide">
+            <img src="assets/NN-Website/HoloDome_Hero.png" alt="HoloDome Hero" class="carousel-image">
+        </div>
+        <div class="carousel-slide">
+            <img src="assets/NN-Website/HD3_NN.JPG" alt="HD3 NN" class="carousel-image">
+        </div>
+        <div class="carousel-slide">
+            <img src="assets/NN-Website/HD2_KellyBrendan.png" alt="HD2 Kelly Brendan" class="carousel-image">
+        </div>
+        <div class="carousel-slide">
+            <img src="assets/NN-Website/AiBeacon_Hero.png" alt="AiBeacon Hero" class="carousel-image">
+        </div>
+        <div class="carousel-slide">
+            <img src="assets/NN-Website/001.jpg" alt="001" class="carousel-image">
+        </div>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+        const currentImageSpan = document.getElementById('current-image');
+        const totalImagesSpan = document.getElementById('total-images');
+
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            // Show current slide
+            slides[currentSlideIndex].classList.add('active');
+            
+            // Update counter
+            currentImageSpan.textContent = currentSlideIndex + 1;
+        }
+
+        function nextSlide() {
+            currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+            showSlide(currentSlideIndex);
+        }
+
+        // Auto-advance every 1 second
+        setInterval(nextSlide, 1000);
+
+        // Initialize
+        totalImagesSpan.textContent = totalSlides;
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html> 
