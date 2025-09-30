@@ -1069,3 +1069,18 @@ footer {
     text-decoration: underline;
 }
 
+/* Ticket link styling */
+.ticket-link {
+    font-size: 48px;
+    font-weight: bold;
+    color: #5DCB5D;
+    text-decoration: underline;
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 1.2;
+    transition: color 0.3s ease;
+}
+
+.ticket-link:hover {
+    color: #4caa4c;
+}
+
