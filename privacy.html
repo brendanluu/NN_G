@@ -14,7 +14,7 @@
             text-align: center; /* Changed from left to center */
         }
         
-        /* Apply 24px bold Helvetica to ALL text elements in privacy content */
+        /* Apply base styling to all text elements in privacy content */
         .privacy-content h1,
         .privacy-content h2,
         .privacy-content p,
@@ -23,31 +23,34 @@
         .privacy-content strong,
         .privacy-content a {
             font-family: Helvetica, Arial, sans-serif;
-            font-size: 24px;
             font-weight: bold;
             text-align: center; /* Changed from left to center */
             line-height: 1.2;
         }
         
-        /* Only adjust specific element sizes for hierarchy */
+        /* Headers are 24px */
         .privacy-content h1 {
-            font-size: 24px; /* Larger for main heading */
+            font-size: 24px;
             margin-bottom: 30px;
         }
         
         .privacy-content h2 {
-            font-size: 24px; /* Larger for section headings */
+            font-size: 24px;
             margin: 30px 0 20px;
+        }
+        
+        /* All other text elements are 14px */
+        .privacy-content p,
+        .privacy-content ul,
+        .privacy-content li,
+        .privacy-content strong,
+        .privacy-content a {
+            font-size: 14px;
         }
         
         /* Spacing and other non-text properties */
         .privacy-content p, .privacy-content ul {
             margin-bottom: 20px;
-        }
-        
-        /* Override font size for paragraphs */
-        .privacy-content p {
-            font-size: 14px;
         }
         
         .privacy-content hr {
